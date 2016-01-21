@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController">
+            <connections>
+                <outlet property="_accountNameTextField" destination="PSl-N7-cy4" id="IIW-QB-rjl"/>
+                <outlet property="_passwordTextField" destination="1WR-PI-Oip" id="3QM-cs-j5l"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" alpha="0.94999999999999996" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="usericon" translatesAutoresizingMaskIntoConstraints="NO" id="hpY-pg-2r0">
+                    <rect key="frame" x="93" y="81" width="135" height="156"/>
+                    <animations/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="pazzbt" translatesAutoresizingMaskIntoConstraints="NO" id="yoK-L6-CbL">
+                    <rect key="frame" x="40" y="301" width="240" height="42"/>
+                    <animations/>
+                </imageView>
+                <button opaque="NO" tag="200" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e75-cQ-4hj">
+                    <rect key="frame" x="197" y="372" width="83" height="22"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <inset key="imageEdgeInsets" minX="-2" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="记住密码" image="checkbox_unselect">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="checkbox_selected"/>
+                    <connections>
+                        <action selector="savePasswordAction:" destination="-1" eventType="touchUpInside" id="I41-ci-ej3"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OvP-99-xpe">
+                    <rect key="frame" x="40" y="413" width="74" height="34"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <state key="normal" title="设置" backgroundImage="set_bt">
+                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="highlighted" backgroundImage="set_push"/>
+                    <connections>
+                        <action selector="pushSetPageAction:" destination="-1" eventType="touchUpInside" id="TVf-rg-hWg"/>
+                    </connections>
+                </button>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1WR-PI-Oip">
+                    <rect key="frame" x="80" y="307" width="180" height="30"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="eQW-lR-SWt"/>
+                    </connections>
+                </textField>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="namebt" translatesAutoresizingMaskIntoConstraints="NO" id="35a-N5-Nce">
+                    <rect key="frame" x="40" y="246" width="240" height="42"/>
+                    <animations/>
+                </imageView>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="用户名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PSl-N7-cy4">
+                    <rect key="frame" x="80" y="252" width="181" height="30"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="FCf-nT-Xew"/>
+                    </connections>
+                </textField>
+                <button opaque="NO" tag="100" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="omO-Sj-7WG">
+                    <rect key="frame" x="40" y="372" width="98" height="22"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <inset key="imageEdgeInsets" minX="-2" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="记住用户名" image="checkbox_unselect">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="checkbox_selected"/>
+                    <connections>
+                        <action selector="saveUserNameAction:" destination="-1" eventType="touchUpInside" id="5Nr-Ar-TKi"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uw8-b4-hwS">
+                    <rect key="frame" x="164" y="413" width="116" height="34"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <state key="normal" title="登录" backgroundImage="log_bt"/>
+                    <state key="highlighted" backgroundImage="log_push"/>
+                    <connections>
+                        <action selector="pushLoginHomePageAction:" destination="-1" eventType="touchUpInside" id="S5i-5n-HWM"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YrD-Ue-ewR">
+                    <rect key="frame" x="121" y="460" width="79" height="79"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <inset key="titleEdgeInsets" minX="-47" minY="38" maxX="15" maxY="-20"/>
+                    <inset key="imageEdgeInsets" minX="8" minY="-13" maxX="0.0" maxY="5"/>
+                    <state key="normal" title="扫码登录" image="scanner"/>
+                    <connections>
+                        <action selector="scanLoginAction:" destination="-1" eventType="touchUpInside" id="KcO-ye-3nf"/>
+                    </connections>
+                </button>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" red="0.2666666667" green="0.5568627451" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="hpY-pg-2r0" secondAttribute="trailing" constant="92" id="BUF-mk-hbe"/>
+                <constraint firstItem="hpY-pg-2r0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="93" id="G3h-bv-2A8"/>
+                <constraint firstItem="hpY-pg-2r0" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="81" id="yOR-XW-gqD"/>
+            </constraints>
+            <point key="canvasLocation" x="246" y="329"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="checkbox_selected" width="22" height="22"/>
+        <image name="checkbox_unselect" width="22" height="22"/>
+        <image name="log_bt" width="202" height="30"/>
+        <image name="log_push" width="202" height="30"/>
+        <image name="namebt" width="255" height="38"/>
+        <image name="pazzbt" width="255" height="38"/>
+        <image name="scanner" width="60" height="56"/>
+        <image name="set_bt" width="90" height="37"/>
+        <image name="set_push" width="90" height="37"/>
+        <image name="usericon" width="156" height="156"/>
+    </resources>
+</document>

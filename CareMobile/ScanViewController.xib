@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ScanViewController">
+            <connections>
+                <outlet property="_searchTypeView" destination="e7z-ID-IxC" id="IR3-6k-adE"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e7z-ID-IxC">
+                    <rect key="frame" x="0.0" y="477" width="320" height="91"/>
+                    <subviews>
+                        <button opaque="NO" tag="10" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Byd-4X-mhb">
+                            <rect key="frame" x="26" y="21" width="100" height="30"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <state key="normal" title="扫病人二维码">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" backgroundImage="log_bt">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="selectSearchBingRTypeAction:" destination="-1" eventType="touchUpInside" id="xze-KH-xC6"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="11" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xbY-kX-9J6">
+                            <rect key="frame" x="197" y="21" width="100" height="30"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <state key="normal" title="扫病房二维码">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" backgroundImage="log_bt"/>
+                            <connections>
+                                <action selector="selectSearchBingRTypeAction:" destination="-1" eventType="touchUpInside" id="zJE-mK-Bla"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="e7z-ID-IxC" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="AUs-zR-j9I"/>
+                <constraint firstAttribute="bottom" secondItem="e7z-ID-IxC" secondAttribute="bottom" id="CyH-DR-e8Y"/>
+                <constraint firstItem="e7z-ID-IxC" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="477" id="MA2-Hc-05M"/>
+                <constraint firstAttribute="trailing" secondItem="e7z-ID-IxC" secondAttribute="trailing" id="fMR-JA-4g3"/>
+            </constraints>
+            <point key="canvasLocation" x="215" y="285"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="log_bt" width="202" height="30"/>
+    </resources>
+</document>

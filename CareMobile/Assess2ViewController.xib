@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Assess2ViewController">
+            <connections>
+                <outlet property="_footView" destination="BgS-Nx-swT" id="oiA-0h-Q1U"/>
+                <outlet property="_headView" destination="dFc-Wu-tyS" id="Uy7-LS-Oxs"/>
+                <outlet property="_labTitle" destination="NEI-sa-Ma4" id="Lj7-TF-3d9"/>
+                <outlet property="_tableView" destination="ZlU-aR-3rm" id="YDX-5i-S8J"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dFc-Wu-tyS">
+                    <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NEI-sa-Ma4">
+                            <rect key="frame" x="8" y="11" width="40" height="18"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="18" id="JPN-OJ-0n1"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <color key="textColor" red="0.2666666667" green="0.5568627451" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="title_next" translatesAutoresizingMaskIntoConstraints="NO" id="YI7-la-8PD">
+                            <rect key="frame" x="56" y="10" width="30" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="30" id="DFG-9y-xpf"/>
+                                <constraint firstAttribute="height" constant="21" id="afe-RZ-SaY"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.32549019610000002" green="0.76078431369999999" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="5vn-OQ-Hbp"/>
+                        <constraint firstItem="YI7-la-8PD" firstAttribute="leading" secondItem="NEI-sa-Ma4" secondAttribute="trailing" constant="8" id="Uba-RD-2lP"/>
+                        <constraint firstItem="NEI-sa-Ma4" firstAttribute="leading" secondItem="dFc-Wu-tyS" secondAttribute="leading" constant="8" id="VgM-Bo-gma"/>
+                        <constraint firstItem="YI7-la-8PD" firstAttribute="top" secondItem="dFc-Wu-tyS" secondAttribute="top" constant="10" id="X3F-WV-prk"/>
+                        <constraint firstItem="NEI-sa-Ma4" firstAttribute="top" secondItem="dFc-Wu-tyS" secondAttribute="top" constant="11" id="cHg-3S-0SU"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZlU-aR-3rm">
+                    <rect key="frame" x="0.0" y="108" width="320" height="460"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="ev5-Zb-4SX"/>
+                        <outlet property="delegate" destination="-1" id="eSl-UU-f2v"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="dFc-Wu-tyS" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="JB9-zI-iIL"/>
+                <constraint firstAttribute="trailing" secondItem="dFc-Wu-tyS" secondAttribute="trailing" id="XZd-NJ-VCS"/>
+                <constraint firstItem="dFc-Wu-tyS" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="mjE-uQ-Vk0"/>
+            </constraints>
+            <point key="canvasLocation" x="275" y="238"/>
+        </view>
+        <view contentMode="scaleToFill" id="BgS-Nx-swT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4gl-Mf-F4J">
+                    <rect key="frame" x="95" y="6" width="131" height="37"/>
+                    <state key="normal" title="保存" backgroundImage="ok_normal"/>
+                    <connections>
+                        <action selector="selectSaveAction:" destination="-1" eventType="touchUpInside" id="1aD-hg-1p9"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="372" y="629"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ok_normal" width="202" height="37"/>
+        <image name="title_next" width="8" height="14"/>
+    </resources>
+</document>

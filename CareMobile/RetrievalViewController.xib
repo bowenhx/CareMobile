@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RetrievalViewController">
+            <connections>
+                <outlet property="_beginTimeBtn" destination="DEZ-Na-CCe" id="5uV-pB-FGY"/>
+                <outlet property="_datePickViewBg" destination="lVy-mj-Kra" id="fgp-Bi-B49"/>
+                <outlet property="_datePickerView" destination="8pi-g8-xoD" id="8SH-av-sld"/>
+                <outlet property="_endTimeBtn" destination="ToO-1P-Dga" id="loN-fF-JEI"/>
+                <outlet property="_textFieldName" destination="OIf-JI-3Hx" id="d73-5Y-sfl"/>
+                <outlet property="_textFieldNumber" destination="4ZG-2M-0vf" id="gJG-pR-ph4"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="病人姓名：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hIe-KS-WRP">
+                    <rect key="frame" x="25" y="70" width="85" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" clipsSubviews="YES" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OIf-JI-3Hx">
+                    <rect key="frame" x="25" y="94" width="271" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="prx-bU-dfX"/>
+                    </connections>
+                </textField>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="病房号：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FTm-cl-6JT">
+                    <rect key="frame" x="25" y="136" width="68" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" clipsSubviews="YES" tag="6" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4ZG-2M-0vf">
+                    <rect key="frame" x="25" y="159" width="271" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="cWl-0D-s7h"/>
+                    </connections>
+                </textField>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="开始查询日期：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hO4-wA-uuZ">
+                    <rect key="frame" x="25" y="200" width="119" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="结束查询日期：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ai0-Lo-ipi">
+                    <rect key="frame" x="25" y="265" width="119" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" tag="10" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DEZ-Na-CCe">
+                    <rect key="frame" x="25" y="223" width="271" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <state key="normal">
+                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="selectTimeTypeAction:" destination="-1" eventType="touchUpInside" id="6Zs-qN-rsP"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="20" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ToO-1P-Dga">
+                    <rect key="frame" x="25" y="294" width="271" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <state key="normal">
+                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="selectTimeTypeAction:" destination="-1" eventType="touchUpInside" id="1m1-GR-usL"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="20" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="utW-hU-YXY">
+                    <rect key="frame" x="114" y="358" width="92" height="38"/>
+                    <state key="normal" title="查询" backgroundImage="Post_btn_unpressed"/>
+                    <state key="selected" backgroundImage="Post_btn_pressed"/>
+                    <connections>
+                        <action selector="selectSumAction:" destination="-1" eventType="touchUpInside" id="HXv-Wr-ivl"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <point key="canvasLocation" x="255" y="107"/>
+        </view>
+        <view contentMode="scaleToFill" id="lVy-mj-Kra">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="207"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view tag="20" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kNT-37-6xB">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
+                    <subviews>
+                        <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Agf-zW-vu3">
+                            <rect key="frame" x="0.0" y="0.0" width="58" height="45"/>
+                            <color key="backgroundColor" red="0.32549019610000002" green="0.76078431369999999" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="58" id="8kV-dw-obg"/>
+                            </constraints>
+                            <state key="normal" title="取消">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="didSelectCancelDateAction:" destination="-1" eventType="touchUpInside" id="UJR-oN-4wa"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GXV-Yu-bqi">
+                            <rect key="frame" x="262" y="0.0" width="58" height="45"/>
+                            <color key="backgroundColor" red="0.32549019610000002" green="0.76078431369999999" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="58" id="ZCU-3F-OZv"/>
+                            </constraints>
+                            <state key="normal" title="確定">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="didSelectFinishDateAction:" destination="-1" eventType="touchUpInside" id="IIv-Zl-VWL"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="13" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WCo-cs-C8g">
+                            <rect key="frame" x="59" y="0.0" width="202" height="45"/>
+                            <color key="backgroundColor" red="0.32549019610000002" green="0.76078431369999999" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="Agf-zW-vu3" firstAttribute="top" secondItem="kNT-37-6xB" secondAttribute="top" id="2Jw-ii-E7O"/>
+                        <constraint firstItem="WCo-cs-C8g" firstAttribute="trailing" secondItem="GXV-Yu-bqi" secondAttribute="trailing" constant="-59" id="8Kx-hX-yan"/>
+                        <constraint firstItem="WCo-cs-C8g" firstAttribute="top" secondItem="kNT-37-6xB" secondAttribute="top" id="Bhc-TC-14Q"/>
+                        <constraint firstAttribute="bottom" secondItem="GXV-Yu-bqi" secondAttribute="bottom" id="Dxd-n2-Y8M"/>
+                        <constraint firstAttribute="trailing" secondItem="GXV-Yu-bqi" secondAttribute="trailing" id="OSp-UM-I1D"/>
+                        <constraint firstItem="WCo-cs-C8g" firstAttribute="leading" secondItem="Agf-zW-vu3" secondAttribute="leading" constant="59" id="e8P-Zv-vBP"/>
+                        <constraint firstItem="GXV-Yu-bqi" firstAttribute="top" secondItem="kNT-37-6xB" secondAttribute="top" id="ivB-VG-LGC"/>
+                        <constraint firstItem="Agf-zW-vu3" firstAttribute="leading" secondItem="kNT-37-6xB" secondAttribute="leading" id="m30-ow-665"/>
+                        <constraint firstAttribute="centerY" secondItem="WCo-cs-C8g" secondAttribute="centerY" id="r94-dQ-bIb"/>
+                        <constraint firstAttribute="bottom" secondItem="Agf-zW-vu3" secondAttribute="bottom" id="thC-md-Sy4"/>
+                    </constraints>
+                </view>
+                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="8pi-g8-xoD">
+                    <rect key="frame" x="0.0" y="45" width="320" height="162"/>
+                    <date key="date" timeIntervalSinceReferenceDate="468838713.62754399">
+                        <!--2015-11-10 08:58:33 +0000-->
+                    </date>
+                    <date key="maximumDate" timeIntervalSinceReferenceDate="1167562800">
+                        <!--2037-12-31 11:00:00 +0000-->
+                    </date>
+                </datePicker>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="kNT-37-6xB" firstAttribute="leading" secondItem="lVy-mj-Kra" secondAttribute="leading" id="0BN-3e-g3P"/>
+                <constraint firstItem="8pi-g8-xoD" firstAttribute="top" secondItem="kNT-37-6xB" secondAttribute="bottom" id="Bbj-rU-ecm"/>
+                <constraint firstAttribute="trailing" secondItem="kNT-37-6xB" secondAttribute="trailing" id="QOd-2G-VB5"/>
+                <constraint firstItem="kNT-37-6xB" firstAttribute="top" secondItem="lVy-mj-Kra" secondAttribute="top" id="UCS-Y0-Yuy"/>
+                <constraint firstAttribute="centerY" secondItem="kNT-37-6xB" secondAttribute="centerY" constant="81" id="WLd-zp-Cq9"/>
+                <constraint firstItem="8pi-g8-xoD" firstAttribute="leading" secondItem="kNT-37-6xB" secondAttribute="leading" id="bKB-0p-YRF"/>
+                <constraint firstAttribute="bottom" secondItem="8pi-g8-xoD" secondAttribute="bottom" id="olb-gB-jho"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="277" y="623.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Post_btn_pressed" width="62" height="34"/>
+        <image name="Post_btn_unpressed" width="62" height="34"/>
+    </resources>
+</document>
