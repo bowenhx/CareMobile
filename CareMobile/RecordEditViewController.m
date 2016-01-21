@@ -445,13 +445,23 @@
        textView.text = @"";
     }
     
-    [_dataSource enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    textView.text = [textView.text stringByReplacingOccurrencesOfString:@" "  withString:@""];
+    
+    [_dataSource enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop){
         if ([obj[@"ITEM"] isEqualToString:@"病情观察及护理"]) {
             _indexRow = idx;
         }
     }];
     
     [self editAddItemsDataText:textView.text forIndex:_indexRow];
+}
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if ([@"\n" isEqualToString:text] == YES) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    return YES;
 }
 #pragma UIPIckerViewDelegate
 #pragma  mark PickerViewDelegate
