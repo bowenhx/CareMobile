@@ -134,17 +134,7 @@
         }else if ([content isKindOfClass:[NSArray class]]){
             NSArray *data = (NSArray *)content;
             
-            if ([_navString isEqualToString:@"修改"]) {
-                [self loadChangeEditData:data];
-            }else{
-                [_dataSource setArray:data];
-                NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-                [formatter setDateFormat:@"yyyy-MM-dd HH:mm"];
-                NSString *strDate = [formatter stringFromDate:[NSDate date]];
-                [self editAddItemsDataText:strDate forIndex:0];
-
-                 [_tableView reloadData];
-            }
+            [self loadChangeEditData:data];
             
             if (data.count == 0) {
                 [self.view showHUDTitleView:@"此病人暂无信息" image:nil];
@@ -155,26 +145,43 @@
 }
 - (void)loadChangeEditData:(NSArray *)arr
 {
-    [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        
-        NSMutableDictionary *mutDic = [NSMutableDictionary dictionaryWithDictionary:obj];
-        
-        [_data enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-           
+    if ([_navString isEqualToString:@"修改"]) {
+        [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            NSMutableDictionary *mutDic = [NSMutableDictionary dictionaryWithDictionary:obj];
+            
+            [_data enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                
+                if ([mutDic[@"CODE"] isEqualToString:obj[@"code"]]) {
+                    mutDic[@"value"] = obj[@"value"];
+                }
+                
+            }];
             
             
-            if ([mutDic[@"CODE"] isEqualToString:obj[@"code"]]) {
-                mutDic[@"value"] = obj[@"value"];
-            }
+            [_dataSource addObject:mutDic];
             
         }];
-      
         
-        [_dataSource addObject:mutDic];
+        [_tableView reloadData];
+    }else{
+        [_dataSource setArray:arr];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+        NSString *strDate = [formatter stringFromDate:[NSDate date]];
+        [self editAddItemsDataText:strDate forIndex:0];
         
-    }];
+        [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([obj[@"ITEM"] hasPrefix:@"风险评估"]) {
+                [_eidtData addObject:@{@"code":obj[@"CODE"],@"value":obj[@"PREVAL"]}];
+            }
+        }];
+        
+        
+        [_tableView reloadData];
+    }
     
-    [_tableView reloadData];
+   
 }
 - (void)didAddItemAction:(UIButton *)btn
 {

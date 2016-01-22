@@ -149,6 +149,11 @@
             }
             
             [_tableView reloadData];
+        }else if (content == nil){
+            [_dataSource removeAllObjects];
+            [_tableView reloadData];
+            
+            [self.view showHUDTitleView:@"该时间段暂无记录信息" image:nil];
         }
         
     }];
