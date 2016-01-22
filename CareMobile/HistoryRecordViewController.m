@@ -91,7 +91,7 @@
 {
     NSDictionary *userInfo = @{@"uid" :USERID,
                                @"id"   :@(_recID),
-                               @"bid"   :_dict[@"BRID"],
+                               @"bid"  :_dict[@"BRID"],
                                @"vid"  : _dict[@"ZYID"],
                                @"items":@(temp)};
     

@@ -85,6 +85,7 @@
     NSString *str = @"";
     if ([_navString isEqualToString:@"新增"]) {
         str = @"添加";
+       
     }else {
         str = @"保存";
     }
@@ -110,14 +111,14 @@
     _dataSource = [[NSMutableArray alloc] initWithCapacity:0];
     _pickerData = [[NSMutableArray alloc] initWithCapacity:0];
     _eidtData = [[NSMutableArray alloc] initWithCapacity:0];
-    [self initData];
     
+   
     
     NSDictionary *dicdata = [SavaData parseDicFromFile:User_File];
     self.userName  = dicdata[@"utname"];
     
-    [_eidtData setArray:_data];
     
+     [self initData];
 }
 - (void)initData
 {
@@ -146,22 +147,23 @@
 - (void)loadChangeEditData:(NSArray *)arr
 {
     if ([_navString isEqualToString:@"修改"]) {
-        [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        [_eidtData setArray:_data];
+        
+        [_data enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop){
             
             NSMutableDictionary *mutDic = [NSMutableDictionary dictionaryWithDictionary:obj];
-            
-            [_data enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                
-                if ([mutDic[@"CODE"] isEqualToString:obj[@"code"]]) {
-                    mutDic[@"value"] = obj[@"value"];
+              
+            [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                   if ([mutDic[@"CODE"] isEqualToString:obj[@"code"]]) {
+                    mutDic[@"CTRL"] = obj[@"CTRL"];
+                    mutDic[@"ITEM"] = obj[@"ITEM"];
                 }
-                
+                   
             }];
-            
-            
-            [_dataSource addObject:mutDic];
-            
-        }];
+              
+             [_dataSource addObject:mutDic];
+         }];
         
         [_tableView reloadData];
     }else{
@@ -296,8 +298,9 @@
         
     }else{
         NSString *value =  _dataSource[indexPath.row][@"value"];
-        if ([@"" isStringBlank:value]) {
-            textF.text = _dataSource[indexPath.row][@"PREVAL"];
+        textF.text = _dataSource[indexPath.row][@"PREVAL"];
+        if ([value isEqualToString:@"￥"]) {
+            textF.text = @"";
         }else{
             textF.text = value;
         }
@@ -364,10 +367,9 @@
     NSLog(@"textF = %@",textField.text);
     CGPoint point = [textField convertPoint:CGPointZero toView:_tableView];
     NSIndexPath *indexPath = [_tableView indexPathForRowAtPoint:point];
-    if ([textField.text isEqualToString:@"/"]) {
-        return;
-    }else if ([@"" isStringBlank:textField.text]) {
-        textField.text = @"";
+  
+    if ([@"" isStringBlank:textField.text]) {
+        textField.text = @"￥";
     }
 
     [self editAddItemsDataText:textField.text forIndex:indexPath.row];
