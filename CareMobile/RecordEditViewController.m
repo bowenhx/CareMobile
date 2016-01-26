@@ -190,9 +190,15 @@
         NSString *strDate = [formatter stringFromDate:[NSDate date]];
         [self editAddItemsDataText:strDate forIndex:0];
         
+        __block NSInteger index = 12;
         [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            if ([obj[@"item"] hasPrefix:@"风险评估"]) {
+            NSString *str = [NSString stringWithFormat:@"COL%d",index];
+            if ([obj[@"code"] isEqualToString:str]) {
                 [_eidtData addObject:@{@"code":obj[@"code"],@"value":obj[@"preval"]}];
+                index ++;
+                if (index == 15) {
+                    index = 9999999;
+                }
             }
         }];
         
