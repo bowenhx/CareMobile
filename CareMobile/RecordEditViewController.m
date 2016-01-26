@@ -158,6 +158,12 @@
     if ([_navString isEqualToString:@"修改"]) {
         [_dataSource setArray: arr];
         [_tableView reloadData];
+        
+        
+        [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [_eidtData addObject:@{@"code":obj[@"code"],@"value":obj[@"value"]}];
+
+        }];
 //
 //      
 //        
