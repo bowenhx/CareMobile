@@ -19,13 +19,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CareMobile/RecordEditViewController.m"
-            timestampString = "475144949.63947"
+            filePath = "CareMobile/HistoryRecordViewController.m"
+            timestampString = "475481572.858136"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "381"
-            endingLineNumber = "381"
-            landmarkName = "-editAddItemsDataText:forIndex:"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "-selectTimeAction:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CareMobile/HistoryRecordViewController.m"
+            timestampString = "475481590.62582"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
+            landmarkName = "-loadAllTotalNumItem:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

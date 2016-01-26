@@ -133,8 +133,11 @@
 //护理记录单列表 (一 / 二 级目录)
 #define CAPI_RYPglist  @"/nursing_record_names.do?api="
 
-//历史记录列biao
-#define CAPI_RecordHis  @"/nursing_record_list.do?api="
+//历史记录列表
+#define CAPI_RecordHis  @"/nursing_record_dates.do?api="  
+
+//修改记录
+#define CAPI_RecordChange @"/nursing_record_list.do?api="
 
 //记录单添加选项
 #define CAPI_RecordAdd  @"/nursing_record_dict.do?api="

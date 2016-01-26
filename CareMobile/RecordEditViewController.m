@@ -80,14 +80,37 @@
     self.title = _navString;
     _indexRow = 0xffff;
     
+    UINib *nibCell = [UINib nibWithNibName:@"RecordEditViewCell" bundle:nil];
+    [_tableView registerNib:nibCell forCellReuseIdentifier:@"recordEditViewCell"];
+    
+    _dataSource = [[NSMutableArray alloc] initWithCapacity:0];
+    _pickerData = [[NSMutableArray alloc] initWithCapacity:0];
+    _eidtData = [[NSMutableArray alloc] initWithCapacity:0];
+    
+    
+    NSDictionary *dicdata = [SavaData parseDicFromFile:User_File];
+    self.userName  = dicdata[@"utname"];
+   
     [self setDatePickerData];
+    
+    
     
     NSString *str = @"";
     if ([_navString isEqualToString:@"新增"]) {
         str = @"添加";
-       
+        NSDictionary *dict = @{@"id":@(_recID),
+                               @"bid":_dict[@"BRID"],
+                               @"vid":_dict[@"ZYID"]
+                               };
+        [self initDataRequestDict:dict url:CAPI_RecordAdd];
     }else {
         str = @"保存";
+        NSDictionary *dict = @{@"id":@(_recID),
+                               @"bid":_dict[@"BRID"],
+                               @"vid":_dict[@"ZYID"],
+                               @"dt":_itemData[@"RECORD_DATE"]
+                               };
+        [self initDataRequestDict:dict url:CAPI_RecordChange];
     }
     
     UIButton *navRightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -105,25 +128,11 @@
 
     
     
-    UINib *nibCell = [UINib nibWithNibName:@"RecordEditViewCell" bundle:nil];
-    [_tableView registerNib:nibCell forCellReuseIdentifier:@"recordEditViewCell"];
-    
-    _dataSource = [[NSMutableArray alloc] initWithCapacity:0];
-    _pickerData = [[NSMutableArray alloc] initWithCapacity:0];
-    _eidtData = [[NSMutableArray alloc] initWithCapacity:0];
-    
-   
-    
-    NSDictionary *dicdata = [SavaData parseDicFromFile:User_File];
-    self.userName  = dicdata[@"utname"];
-    
-    
-     [self initData];
 }
-- (void)initData
+- (void)initDataRequestDict:(NSDictionary *)dict url:(NSString *)url
 {
     [self.view showHUDActivityView:@"正在加载" shade:NO];
-    [[CARequest shareInstance] startWithRequestCompletion:CAPI_RecordAdd withParameter:@{@"id":@(_recID),@"bid":_dict[@"BRID"],@"vid":_dict[@"ZYID"]} completed:^(id content, NSError *err) {
+    [[CARequest shareInstance] startWithRequestCompletion:url withParameter:dict completed:^(id content, NSError *err) {
         [self.view removeHUDActivity];
         NSLog(@"content = %@",content);
         if ([content isKindOfClass:[NSDictionary class]]) {
@@ -147,25 +156,27 @@
 - (void)loadChangeEditData:(NSArray *)arr
 {
     if ([_navString isEqualToString:@"修改"]) {
-        
-        [_eidtData setArray:_data];
-        
-        [_data enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop){
-            
-            NSMutableDictionary *mutDic = [NSMutableDictionary dictionaryWithDictionary:obj];
-              
-            [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                   if ([mutDic[@"CODE"] isEqualToString:obj[@"code"]]) {
-                    mutDic[@"CTRL"] = obj[@"CTRL"];
-                    mutDic[@"ITEM"] = obj[@"ITEM"];
-                }
-                   
-            }];
-              
-             [_dataSource addObject:mutDic];
-         }];
-        
+        [_dataSource setArray: arr];
         [_tableView reloadData];
+//
+//      
+//        
+//        [_data enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop){
+//            
+//            NSMutableDictionary *mutDic = [NSMutableDictionary dictionaryWithDictionary:obj];
+//              
+//            [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//                   if ([mutDic[@"CODE"] isEqualToString:obj[@"code"]]) {
+//                    mutDic[@"CTRL"] = obj[@"CTRL"];
+//                    mutDic[@"ITEM"] = obj[@"ITEM"];
+//                }
+//                   
+//            }];
+//              
+//             [_dataSource addObject:mutDic];
+//         }];
+//        
+//        [_tableView reloadData];
     }else{
         [_dataSource setArray:arr];
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -174,8 +185,8 @@
         [self editAddItemsDataText:strDate forIndex:0];
         
         [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            if ([obj[@"ITEM"] hasPrefix:@"风险评估"]) {
-                [_eidtData addObject:@{@"code":obj[@"CODE"],@"value":obj[@"PREVAL"]}];
+            if ([obj[@"item"] hasPrefix:@"风险评估"]) {
+                [_eidtData addObject:@{@"code":obj[@"code"],@"value":obj[@"preval"]}];
             }
         }];
         
@@ -260,9 +271,9 @@
 {
     
     UILabel *title = (UILabel *)[cell.contentView viewWithTag:10];
-    title.text = _dataSource[indexPath.row][@"ITEM"];
+    title.text = _dataSource[indexPath.row][@"item"];
     
-    NSString *item = _dataSource[indexPath.row][@"DICT"];
+    NSString *item = _dataSource[indexPath.row][@"dict"];
     if (indexPath.row == 0) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
@@ -287,7 +298,7 @@
         textView.layer.borderWidth = 1;
         textView.layer.borderColor = [UIColor colorMemberFBg].CGColor;
         textView.layer.cornerRadius = 5;
-    }else if ([_dataSource[indexPath.row][@"CTRL"] isEqualToString:@"READONLY"])
+    }else if ([_dataSource[indexPath.row][@"ctrl"] isEqualToString:@"READONLY"])
     {
         if ([_navString isEqualToString:@"新增"]) {
             textF.enabled = NO;
@@ -297,14 +308,14 @@
         textF.text = self.userName;
         
     }else{
-        NSString *value =  _dataSource[indexPath.row][@"value"];
-        textF.text = _dataSource[indexPath.row][@"PREVAL"];
-        if ([value isEqualToString:@"￥"]) {
-            textF.text = @"";
+        if ([_navString isEqualToString:@"新增"]) {
+            textF.text = _dataSource[indexPath.row][@"preval"];
+            
         }else{
+            NSString *value =  _dataSource[indexPath.row][@"value"];
             textF.text = value;
         }
-       
+        
         textF.hidden = NO;
         textView.hidden = YES;
         textF.enabled = YES;
@@ -314,7 +325,7 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([_dataSource[indexPath.row][@"ITEM"] hasPrefix:@"病情观察"]) {
+    if ([_dataSource[indexPath.row][@"item"] hasPrefix:@"病情观察"]) {
         return 100;
     }
     return 44;
@@ -322,7 +333,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSString *item = _dataSource[indexPath.row][@"DICT"];
+    NSString *item = _dataSource[indexPath.row][@"dict"];
     if (indexPath.row == 0) {
         _indexRow = indexPath.row;
         [self showDatePickerView];
@@ -333,7 +344,7 @@
         [_pickerData setArray:items];
          _indexRow = indexPath.row;
         
-        if ( [_dataSource[indexPath.row][@"ITEM"] isEqualToString:@"病情观察及护理"] ) {
+        if ( [_dataSource[indexPath.row][@"item"] isEqualToString:@"病情观察及护理"] ) {
             LGActionSheet *actionSheet = [[LGActionSheet alloc] initWithTitle:nil
                                                                  buttonTitles:items
                                                             cancelButtonTitle:@"Cancel"
@@ -369,7 +380,7 @@
     NSIndexPath *indexPath = [_tableView indexPathForRowAtPoint:point];
   
     if ([@"" isStringBlank:textField.text]) {
-        textField.text = @"￥";
+        textField.text = @"";
     }
 
     [self editAddItemsDataText:textField.text forIndex:indexPath.row];
@@ -380,7 +391,7 @@
 {
     if (_indexRow != 0xffff) {
          NSMutableDictionary *mutDic = [NSMutableDictionary dictionaryWithDictionary:_dataSource[index]];
-        if ([_dataSource[index][@"CTRL"] isEqualToString:@"MULTI"])
+        if ([_dataSource[index][@"ctrl"] isEqualToString:@"MULTI"])
         {
             NSString *value = mutDic[@"value"];
             if (!([@"" isStringBlank:value] || [@"" isStringBlank:text])) {
@@ -401,25 +412,28 @@
     //    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     NSMutableDictionary *mutDic = [NSMutableDictionary dictionaryWithDictionary:_dataSource[index]];
     mutDic[@"value"] = text;
+    if ([_navString isEqualToString:@"新增"]) {
+        mutDic[@"preval"] = text;
+    }
     [_dataSource replaceObjectAtIndex:index withObject:mutDic];
     
     if (_eidtData.count) {
         __block BOOL isSame = NO;
         [_eidtData enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             NSString *str = obj[@"code"];
-            if ([str isEqualToString:mutDic[@"CODE"]]) {
-                [_eidtData replaceObjectAtIndex:idx withObject:@{@"code":mutDic[@"CODE"],@"value":text}];
+            if ([str isEqualToString:mutDic[@"code"]]) {
+                [_eidtData replaceObjectAtIndex:idx withObject:@{@"code":mutDic[@"code"],@"value":text}];
                  isSame = YES;
             }
             
         }];
         
         if (!isSame) {
-            [_eidtData addObject:@{@"code":mutDic[@"CODE"],@"value":text}];
+            [_eidtData addObject:@{@"code":mutDic[@"code"],@"value":text}];
         }
         
     }else{
-        [_eidtData addObject:@{@"code":mutDic[@"CODE"],@"value":text}];
+        [_eidtData addObject:@{@"code":mutDic[@"code"],@"value":text}];
     }
     
 }

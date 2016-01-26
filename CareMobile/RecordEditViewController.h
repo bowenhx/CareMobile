@@ -15,6 +15,6 @@
 @property (nonatomic , assign) NSInteger recID;
 
 
-@property (nonatomic , copy) NSArray *data;
+@property (nonatomic , copy) NSDictionary *itemData;
 
 @end

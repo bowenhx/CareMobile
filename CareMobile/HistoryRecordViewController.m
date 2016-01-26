@@ -23,7 +23,10 @@
 @end
 
 @implementation HistoryRecordViewController
-
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     _segmentedBtn.selectedSegmentIndex = 0;
@@ -192,7 +195,7 @@
     }
 
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    NSString *strCode = _dataSource[indexPath.row][0][@"value"];
+    NSString *strCode = _dataSource[indexPath.row][@"RECORD_DATE"];
    
     cell.textLabel.text = strCode;
     
@@ -206,7 +209,7 @@
     RecordEditViewController *recordEditVC = [[RecordEditViewController alloc] initWithNibName:@"RecordEditViewController" bundle:nil];
     recordEditVC.navString = @"修改";
     recordEditVC.recID = _recID;
-    recordEditVC.data = _dataSource[indexPath.row];
+    recordEditVC.itemData = _dataSource[indexPath.row];
     recordEditVC.dict = _dict;
     [self.navigationController pushViewController:recordEditVC animated:YES];
 }
@@ -219,7 +222,7 @@
 - (void)didSelectDelItemRow:(NSInteger)row
 {
     [self.view showHUDActivityView:@"正在加载" shade:NO];
-    [[CARequest shareInstance] startWithRequestCompletion:CAPI_RecordDel withParameter:@{@"id":@(_recID),@"bid":_dict[@"BRID"],@"vid":_dict[@"ZYID"],@"dtime":_dataSource[row][0][@"value"]} completed:^(id content, NSError *err) {
+    [[CARequest shareInstance] startWithRequestCompletion:CAPI_RecordDel withParameter:@{@"id":@(_recID),@"bid":_dict[@"BRID"],@"vid":_dict[@"ZYID"],@"dtime":_dataSource[row][@"RECORD_DATE"]} completed:^(id content, NSError *err) {
         NSLog(@"content = %@",content);
         [self.view removeHUDActivity];
         if ([content[@"status"] integerValue] == 1){
