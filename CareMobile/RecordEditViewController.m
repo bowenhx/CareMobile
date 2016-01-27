@@ -483,7 +483,7 @@
     textView.text = [textView.text stringByReplacingOccurrencesOfString:@" "  withString:@""];
     
     [_dataSource enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop){
-        if ([obj[@"ITEM"] isEqualToString:@"病情观察及护理"]) {
+        if ([obj[@"item"] hasPrefix:@"病情观察"]) {
             _indexRow = idx;
         }
     }];
