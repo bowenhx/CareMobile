@@ -260,7 +260,8 @@
         NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         
         NSDictionary *dicdata = [SavaData parseDicFromFile:User_File];
-        NSDictionary *userInfo = @{@"uname" :dicdata[@"utname"],
+        NSDictionary *userInfo = @{@"uid":USERID,
+                                   @"uname" :dicdata[@"utname"],
                                    @"bid"   :_dict[@"BRID"],
                                    @"vid"   :_dict[@"ZYID"],
                                    @"time"  : _dictTime[_tempType],
@@ -302,7 +303,7 @@
         NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         
 //        NSString *name = [[SavaData shareInstance] printDataStr:USERNAMEKEY];
-        NSDictionary *userInfo = @{
+        NSDictionary *userInfo = @{@"uid"   :USERID,
                                    @"bid"   :_dict[@"BRID"],
                                    @"vid"   :_dict[@"ZYID"],
                                    @"saveok":json};
@@ -382,7 +383,7 @@
 - (void)requestAddItemData:(NSString *)type
 {
     [self.view showHUDActivityView:@"正在加载" shade:NO];
-    [[CARequest shareInstance] startWithRequestCompletion:CAPI_HLOrder withParameter:@{@"cls":type} completed:^(id content, NSError *err) {
+    [[CARequest shareInstance] startWithRequestCompletion:CAPI_HLOrder withParameter:@{@"cls":type,@"uid":USERID} completed:^(id content, NSError *err) {
         NSLog(@"content = %@",content);
         [self.view removeHUDActivity];
         if ([content isKindOfClass:[NSDictionary class]]) {
@@ -409,7 +410,7 @@
 - (void)requestTypeItem:(NSString *)type
 {
    [self.view showHUDActivityView:@"正在加载" shade:NO];
-    [[CARequest shareInstance] startWithRequestCompletion:CAPI_HLOrderOk withParameter:@{@"bid":_dict[@"BRID"],@"vid":_dict[@"ZYID"],@"hldate":_huliTime,@"cls":type} completed:^(id content, NSError *err) {
+    [[CARequest shareInstance] startWithRequestCompletion:CAPI_HLOrderOk withParameter:@{@"uid":USERID,@"bid":_dict[@"BRID"],@"vid":_dict[@"ZYID"],@"hldate":_huliTime,@"cls":type} completed:^(id content, NSError *err) {
         NSLog(@"content = %@",content);
         [self.view removeHUDActivity];
         if ([content isKindOfClass:[NSDictionary class]]) {

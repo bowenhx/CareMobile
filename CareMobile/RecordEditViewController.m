@@ -158,6 +158,12 @@
     if ([_navString isEqualToString:@"修改"]) {
         [_dataSource setArray: arr];
         [_tableView reloadData];
+        
+        
+        [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [_eidtData addObject:@{@"code":obj[@"code"],@"value":obj[@"value"]}];
+
+        }];
 //
 //      
 //        
@@ -184,9 +190,15 @@
         NSString *strDate = [formatter stringFromDate:[NSDate date]];
         [self editAddItemsDataText:strDate forIndex:0];
         
+        __block NSInteger index = 12;
         [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            if ([obj[@"item"] hasPrefix:@"风险评估"]) {
+            NSString *str = [NSString stringWithFormat:@"COL%d",index];
+            if ([obj[@"code"] isEqualToString:str]) {
                 [_eidtData addObject:@{@"code":obj[@"code"],@"value":obj[@"preval"]}];
+                index ++;
+                if (index == 15) {
+                    index = 9999999;
+                }
             }
         }];
         
@@ -471,7 +483,7 @@
     textView.text = [textView.text stringByReplacingOccurrencesOfString:@" "  withString:@""];
     
     [_dataSource enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop){
-        if ([obj[@"ITEM"] isEqualToString:@"病情观察及护理"]) {
+        if ([obj[@"item"] hasPrefix:@"病情观察"]) {
             _indexRow = idx;
         }
     }];
