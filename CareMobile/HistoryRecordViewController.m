@@ -50,6 +50,8 @@
 
     
     
+    [_tableView registerNib:[UINib nibWithNibName:@"RecordHistoryViewCell" bundle:nil] forCellReuseIdentifier:@"recordHistoryViewCell"];
+    
     _dataSource = [[NSMutableArray alloc] init];
     
     for (UIView *view in self.view.subviews) {
@@ -188,20 +190,47 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *patientsCell = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:patientsCell];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:patientsCell];
-    }
-
+    static NSString *patientsCell = @"recordHistoryViewCell";
+    UITableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:patientsCell forIndexPath:indexPath];
+    
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    NSString *strCode = _dataSource[indexPath.row][@"RECORD_DATE"];
-   
-    cell.textLabel.text = strCode;
+    
+    [self loadDataTableViewCell:cell cellForRowIndexPath:indexPath];
+    
     
     return cell;
 }
+- (void)loadDataTableViewCell:(UITableViewCell *)cell cellForRowIndexPath:(NSIndexPath *)indexPath
+{
+    UILabel *timeLab = (UILabel *)[cell.contentView viewWithTag:10];
+    timeLab.text = _dataSource[indexPath.row][@"RECORD_DATE"];
+    
 
+    NSString *tiwen = _dataSource[indexPath.row][@"TIWEN"];
+    UILabel *heatLab = (UILabel *)[cell.contentView viewWithTag:11];
+    
+    if ([tiwen isEqual:@"24h"]) {
+        cell.backgroundColor = [UIColor colorAppBg];
+         heatLab.text = @"体温：";
+    }else{
+        cell.backgroundColor = [UIColor whiteColor];
+        heatLab.text = [NSString stringWithFormat:@"体温：%@",tiwen];
+    }
+  
+    
+    UILabel *throbLab = (UILabel *)[cell.contentView viewWithTag:12];
+    throbLab.text = [NSString stringWithFormat:@"脉搏：%@",_dataSource[indexPath.row][@"MAIBO"]];
+    
+    UILabel *breatheLab = (UILabel *)[cell.contentView viewWithTag:13];
+    breatheLab.text = [NSString stringWithFormat:@"呼吸：%@",_dataSource[indexPath.row][@"HUXI"]];
+    
+    UILabel *nurseLab = (UILabel *)[cell.contentView viewWithTag:14];
+    nurseLab.text = [NSString stringWithFormat:@"病情护理及措施：%@",_dataSource[indexPath.row][@"BINGQING"]];
+ 
+    
+    
+
+}
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -237,6 +266,13 @@
         
     }];
     
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *message = [NSString stringWithFormat:@"病情护理及措施：%@",_dataSource[indexPath.row][@"BINGQING"]];
+    
+    CGRect rect = [message boundingRectWithSize:CGSizeMake(SCREEN_WIDTH-16, 500) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:SYSTEMFONT(15)} context:nil];
+    return rect.size.height < 20 ? 80 : rect.size.height + 64;
 }
 /*
 #pragma mark - Navigation

@@ -216,7 +216,6 @@
 {
     NSString *string = _dataSource[indexPath.section][@"option"][indexPath.row][@"name"];
     CGRect rect = [string boundingRectWithSize:CGSizeMake(SCREEN_WIDTH-8-35, 500) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:SYSTEMFONT(16)} context:nil];
-    NSLog(@"height = %f",rect.size.height);
     return rect.size.height < 20 ? 44 : rect.size.height+30;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

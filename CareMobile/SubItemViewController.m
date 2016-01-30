@@ -35,6 +35,8 @@
     NSInteger           _pickerRow;
     NSInteger           _indexRow;
     NSString            *_tempType;
+    
+    BOOL                _deleteText;  //临时变量观察值
 }
 
 @end
@@ -124,8 +126,24 @@
     [self initViews];
     
     [self loadHeadViewDatas];
+    
+   
 }
-
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    if ([_tempTextField isFirstResponder]) {
+        [_tempTextField resignFirstResponder];
+    }
+}
+- (NSString *)todayTime
+{
+    //设置其他选项的时间为默认当前时间
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"HH:mm"];
+    NSString *strDate = [formatter stringFromDate:[NSDate date]];
+    return strDate;
+}
 - (void)initViews
 {
     _indexRow = 0;
@@ -136,11 +154,9 @@
     _tempPickData = [NSMutableArray array];
     self.dictTime[@"A"] = _strTime;
   
-    //设置其他选项的时间为默认当前时间
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"HH:mm"];
-    NSString *strDate = [formatter stringFromDate:[NSDate date]];
-    _dictTime[@"D"] = strDate;
+    _dictTime[@"D"] = [self todayTime];
+    
+    
     
     NSArray *arrViews = [[NSBundle mainBundle] loadNibNamed:@"DetailsHeadView" owner:nil options:nil];
     _detailsView = arrViews[0];
@@ -392,6 +408,24 @@
                 [_pickerData setArray:arrData];
                 [_tempPickData setArray:arrData];
                 [_pickerView reloadAllComponents];
+                
+                NSInteger todayValue = [[self todayTime] integerValue];
+                
+                __block NSInteger index = 0;
+                //在新增给生命体征时间时，给一个默认的选项值
+               [_pickerData enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                   NSInteger value = [obj integerValue];
+                   if (todayValue >= value) {
+                       index += 1;
+                   }
+               }];
+                
+                if (index == 0) {
+                    _dictTime[_tempType] = _pickerData[_pickerData.count-1];
+                }else{
+                    _dictTime[_tempType] = _pickerData[index-1];
+                }
+                
             }
             
             NSArray *arrItem = content[@"ORDERITEM"];
@@ -488,7 +522,16 @@
             labItem.text = [NSString stringWithFormat:@"%@（%@）",_dataSource[row][@"HL_ITEM"],unit];
         }
        
-        textF.text   = _dataSource[row][@"HL_VALUE"];
+        if ([_dataSource[row][@"HL_ITEM"] isEqualToString:@"血压"]) {
+            //添加监听textField 字数变化事件
+            [textF addTarget:self action:@selector(textFieldNotification:) forControlEvents:UIControlEventEditingChanged];
+        }
+       
+        
+        
+        textF.text = _dataSource[row][@"HL_VALUE"];
+        
+        
         
         //是否是选择填写
         NSString *strValue = _dataSource[row][@"DICT"];
@@ -496,12 +539,12 @@
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
         //控制键盘类型
-        BOOL keyboday = [_dataSource[row][@"CTRL"] boolValue];
-        if (keyboday) {
-            textF.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
-        }else{
-            textF.keyboardType = UIKeyboardTypeURL;
-        }
+//        BOOL keyboday = [_dataSource[row][@"CTRL"] boolValue];
+//        if (keyboday) {
+            textF.keyboardType = UIKeyboardTypeDecimalPad;
+//        }else{
+//            textF.keyboardType = UIKeyboardTypeURL;
+//        }
     }
     
    
@@ -518,11 +561,16 @@
     UITextField *textField = (UITextField *)[cell.contentView viewWithTag:12];
     textField.text = [self stringForNull:_dataSource[indexPath.row][@"HL_VALUE"]];
     textField.delegate = self;
-    BOOL keyboday = [_dataSource[indexPath.row][@"CTRL"] boolValue];
-    if (keyboday) {
-        textField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
-    }else{
-        textField.keyboardType = UIKeyboardTypeURL;
+//    BOOL keyboday = [_dataSource[indexPath.row][@"CTRL"] boolValue];
+//    if (keyboday) {
+        textField.keyboardType = UIKeyboardTypeDecimalPad;
+//    }else{
+//        textField.keyboardType = UIKeyboardTypeURL;
+//    }
+    
+    if ([labItem.text isEqualToString:@"血压"]) {
+        //添加监听textField 字数变化事件
+        [textField addTarget:self action:@selector(textFieldNotification:) forControlEvents:UIControlEventEditingChanged];
     }
     
     UILabel *labValue = (UILabel *)[cell.contentView viewWithTag:13];
@@ -624,7 +672,7 @@
     if (_dataSource.count ==0) {
         return;
     }
-    NSLog(@"textF = %@",textField.text);
+//    NSLog(@"textF = %@",textField.text);
     CGPoint point = [textField convertPoint:CGPointZero toView:_tableView];
     NSIndexPath *indexPath = [_tableView indexPathForRowAtPoint:point];
    
@@ -688,29 +736,45 @@
 }
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    /*
-    CGPoint point = [textField convertPoint:CGPointZero toView:_tableView];
-    NSIndexPath *indexPath = [_tableView indexPathForRowAtPoint:point];
-    NSDictionary *dict = _dataSource[indexPath.row - 1];
-    if ([dict[@"HL_ITEM"] isEqualToString:@"血压"]) {
-        NSInteger value = [[textField.text stringByAppendingString:string] integerValue];
-        if (value <10) {
-            return YES;
-        }
-        
-        if ( value >= 100 ) {
-            textField.text = [NSString stringWithFormat:@"%d/",value];
-        }else {
-            textField.text = [NSString stringWithFormat:@"%d/",value];
-        }
-    }*/
+    if (string.length == 0) {
+        _deleteText = YES;
+    }else{
+        _deleteText = NO;
+    }
     return YES;
 }
-//- (NSString *)loadTextValue:(NSString *)str
-//{
-//    NSInteger value = [str integerValue];
-//    
-//}
+#pragma mark textFied 监听字数改变
+- (void)textFieldNotification:(UITextField *)sender
+{
+    NSRange range = [sender.text rangeOfString:@"/"];
+    if (range.location != NSNotFound) {
+        return;
+    }else if (_deleteText){
+        return;
+    }
+    
+    CGPoint point = [sender convertPoint:CGPointZero toView:_tableView];
+    NSIndexPath *indexPath = [_tableView indexPathForRowAtPoint:point];
+    NSInteger row = indexPath.row;
+    if ([_navRight isEqualToString:@"添加"]) {
+        row -= 1;
+    }
+    
+    NSDictionary *dict = _dataSource[row];
+    
+    if ([dict[@"HL_ITEM"] isEqualToString:@"血压"]) {
+        NSInteger value = [sender.text integerValue];
+
+        if (value < 20 ) {
+            //取三位
+        }else{
+            //取两位
+            sender.text = [NSString stringWithFormat:@"%d/",value];
+        }
+    }
+    
+}
+
 - (void)editAddItemsDataText:(NSString *)text forIndex:(NSInteger)index
 {
     
