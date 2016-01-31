@@ -27,6 +27,29 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+- (void)addNavTitleView
+{
+    UIView *navView = [[UIView alloc] initWithFrame:CGRectMake(70, 0, SCREEN_WIDTH-140, 44)];
+    //    navView.layer.borderWidth = 1;
+    //    navView.layer.borderColor = [UIColor redColor].CGColor;
+    
+    UILabel *labTitile = [[UILabel alloc] initWithFrame:CGRectMake(0, 2, WIDTH(navView), 23)];
+    labTitile.text = self.title;
+    labTitile.textColor = [UIColor whiteColor];
+    labTitile.textAlignment = NSTextAlignmentCenter;
+    labTitile.font = SYSTEMFONT(17);
+    [navView addSubview:labTitile];
+    
+    UILabel *labSubTitile = [[UILabel alloc] initWithFrame:CGRectMake(0, HEIGHTADDY(labTitile), WIDTH(navView), 17)];
+    labSubTitile.text = [NSString stringWithFormat:@"%@ 床 %@",_dict[@"CHUANG"],_dict[@"BRNAME"]];
+    labSubTitile.textColor = [UIColor whiteColor];
+    labSubTitile.textAlignment = NSTextAlignmentCenter;
+    labSubTitile.font = SYSTEMFONT(13);
+    [navView addSubview:labSubTitile];
+    
+    
+    self.navigationItem.titleView = navView;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     _segmentedBtn.selectedSegmentIndex = 0;
@@ -34,6 +57,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadViewData) name:@"updataHisToryData" object:nil];
     
+    [self addNavTitleView];
     
     UIButton *navRightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     navRightBtn.frame = CGRectMake(0, 0, 70, 30);
