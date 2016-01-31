@@ -50,7 +50,7 @@
 //    _tableView.layer.borderWidth = 1;
 //    _tableView.layer.borderColor = [UIColor redColor].CGColor;
     _dataSource = [[NSMutableArray alloc] initWithCapacity:0];
-    _segmentedContBtn.selectedSegmentIndex= 0;
+
     
     [self initViews];
     
@@ -76,7 +76,7 @@
     [_navBtnName setTitle:dicdata[@"utname"] forState:UIControlStateNormal];
     
     _segmentedContBtn.tintColor = [UIColor whiteColor];
-    [_segmentedContBtn setWidth:60 forSegmentAtIndex:0];
+    [_segmentedContBtn setWidth:58 forSegmentAtIndex:0];
     _segmentedContBtn.selectedSegmentIndex = 0;
     
     _tableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(reloadDatas)];
