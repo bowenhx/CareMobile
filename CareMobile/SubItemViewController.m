@@ -522,29 +522,30 @@
             labItem.text = [NSString stringWithFormat:@"%@（%@）",_dataSource[row][@"HL_ITEM"],unit];
         }
        
+        //控制键盘类型
+//        BOOL keyboday = [_dataSource[row][@"CTRL"] boolValue];
+//        if (keyboday) {
+        textF.keyboardType = UIKeyboardTypeDecimalPad;
+//        }else{
+//            textF.keyboardType = UIKeyboardTypeURL;
+//        }
+        
+        
         if ([_dataSource[row][@"HL_ITEM"] isEqualToString:@"血压"]) {
             //添加监听textField 字数变化事件
             [textF addTarget:self action:@selector(textFieldNotification:) forControlEvents:UIControlEventEditingChanged];
+        }else if ([_dataSource[row][@"HL_ITEM"] isEqualToString:@"体重"]){
+            textF.keyboardType = UIKeyboardTypeDefault;
         }
-       
-        
         
         textF.text = _dataSource[row][@"HL_VALUE"];
-        
-        
         
         //是否是选择填写
         NSString *strValue = _dataSource[row][@"DICT"];
         if (![@"" isStringBlank:strValue]) {
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
-        //控制键盘类型
-//        BOOL keyboday = [_dataSource[row][@"CTRL"] boolValue];
-//        if (keyboday) {
-            textF.keyboardType = UIKeyboardTypeDecimalPad;
-//        }else{
-//            textF.keyboardType = UIKeyboardTypeURL;
-//        }
+       
     }
     
    
@@ -571,6 +572,8 @@
     if ([labItem.text isEqualToString:@"血压"]) {
         //添加监听textField 字数变化事件
         [textField addTarget:self action:@selector(textFieldNotification:) forControlEvents:UIControlEventEditingChanged];
+    }else if ([labItem.text isEqualToString:@"体重"]){
+        textField.keyboardType = UIKeyboardTypeDefault;
     }
     
     UILabel *labValue = (UILabel *)[cell.contentView viewWithTag:13];
