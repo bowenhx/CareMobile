@@ -34,12 +34,36 @@
     
     NSInteger       _indexRow;
     NSInteger       _pickerRow;
+    
+    BOOL             _deleteText;  //临时变量观察值
 }
 @property (nonatomic , copy)NSString *userName;
 @end
 
 @implementation RecordEditViewController
 
+
+- (void)addNavTitleView
+{
+    UIView *navView = [[UIView alloc] initWithFrame:CGRectMake(70, 0, SCREEN_WIDTH-140, 44)];
+    
+    UILabel *labTitile = [[UILabel alloc] initWithFrame:CGRectMake(0, 2, WIDTH(navView), 23)];
+    labTitile.text = _navString;
+    labTitile.textColor = [UIColor whiteColor];
+    labTitile.textAlignment = NSTextAlignmentCenter;
+    labTitile.font = SYSTEMFONT(17);
+    [navView addSubview:labTitile];
+    
+    UILabel *labSubTitile = [[UILabel alloc] initWithFrame:CGRectMake(0, HEIGHTADDY(labTitile), WIDTH(navView), 17)];
+    labSubTitile.text = [NSString stringWithFormat:@"%@ 床 %@",_dict[@"CHUANG"],_dict[@"BRNAME"]];
+    labSubTitile.textColor = [UIColor whiteColor];
+    labSubTitile.textAlignment = NSTextAlignmentCenter;
+    labSubTitile.font = SYSTEMFONT(13);
+    [navView addSubview:labSubTitile];
+    
+    
+    self.navigationItem.titleView = navView;
+}
 - (void)setDatePickerData
 {
     /**
@@ -77,7 +101,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.title = _navString;
+
+    [self addNavTitleView];
+    
     _indexRow = 0xffff;
     
     UINib *nibCell = [UINib nibWithNibName:@"RecordEditViewCell" bundle:nil];
@@ -114,7 +140,7 @@
     }
     
     UIButton *navRightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    navRightBtn.frame = CGRectMake(0, 0, 70, 30);
+    navRightBtn.frame = CGRectMake(0, 0, 60, 30);
     [navRightBtn setBackgroundImage:[UIImage imageNamed:@"log_bt"] forState:UIControlStateNormal];
     [navRightBtn setTitle:str forState:UIControlStateNormal];
     navRightBtn.titleLabel.font = [UIFont systemFontOfSize:14];
@@ -306,6 +332,16 @@
     textF.delegate = self;
     textView.delegate = self;
     
+    //添加血压touch 事件
+     if ([title.text isEqualToString:@"血压"]) {
+         //添加监听textField 字数变化事件
+        [textF addTarget:self action:@selector(textFieldNotification:) forControlEvents:UIControlEventEditingChanged];
+        textF.keyboardType = UIKeyboardTypeDecimalPad;
+     }else{
+        textF.keyboardType = UIKeyboardTypeDefault;
+     }
+    
+    
     
     if ([title.text hasPrefix:@"病情观察"]) {
         textF.hidden = YES;
@@ -379,6 +415,8 @@
     }
 
 }
+#pragma mark 
+#pragma mark UITextFieldDelegate
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
@@ -451,6 +489,36 @@
     }else{
         [_eidtData addObject:@{@"code":mutDic[@"code"],@"value":text}];
     }
+    
+}
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if (string.length == 0) {
+        _deleteText = YES;
+    }else{
+        _deleteText = NO;
+    }
+    return YES;
+}
+#pragma mark textFied 监听字数改变
+- (void)textFieldNotification:(UITextField *)sender
+{
+    NSRange range = [sender.text rangeOfString:@"/"];
+    if (range.location != NSNotFound) {
+        return;
+    }else if (_deleteText){
+        return;
+    }
+
+    NSInteger value = [sender.text integerValue];
+    
+    if (value < 20 ) {
+        //不追加/
+    }else{
+        //追加/
+        sender.text = [NSString stringWithFormat:@"%d/",value];
+    }
+    
     
 }
 

@@ -30,8 +30,6 @@
 - (void)addNavTitleView
 {
     UIView *navView = [[UIView alloc] initWithFrame:CGRectMake(70, 0, SCREEN_WIDTH-140, 44)];
-    //    navView.layer.borderWidth = 1;
-    //    navView.layer.borderColor = [UIColor redColor].CGColor;
     
     UILabel *labTitile = [[UILabel alloc] initWithFrame:CGRectMake(0, 2, WIDTH(navView), 23)];
     labTitile.text = self.title;

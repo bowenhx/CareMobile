@@ -752,26 +752,15 @@
     }else if (_deleteText){
         return;
     }
-    
-    CGPoint point = [sender convertPoint:CGPointZero toView:_tableView];
-    NSIndexPath *indexPath = [_tableView indexPathForRowAtPoint:point];
-    NSInteger row = indexPath.row;
-    if ([_navRight isEqualToString:@"添加"]) {
-        row -= 1;
+    //取血压vulue
+    NSInteger value = [sender.text integerValue];
+    if (value < 20 ) {
+        //不追加/
+    }else{
+        //追加/
+        sender.text = [NSString stringWithFormat:@"%d/",value];
     }
-    
-    NSDictionary *dict = _dataSource[row];
-    
-    if ([dict[@"HL_ITEM"] isEqualToString:@"血压"]) {
-        NSInteger value = [sender.text integerValue];
 
-        if (value < 20 ) {
-            //取三位
-        }else{
-            //取两位
-            sender.text = [NSString stringWithFormat:@"%d/",value];
-        }
-    }
     
 }
 
