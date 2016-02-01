@@ -199,7 +199,11 @@
                 if (index == 15) {
                     index = 9999999;
                 }
+            }else if (![@"" isStringBlank:obj[@"preval"]])
+            {
+                [_eidtData addObject:@{@"code":obj[@"code"],@"value":obj[@"preval"]}];
             }
+            
         }];
         
         
@@ -434,7 +438,7 @@
         [_eidtData enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             NSString *str = obj[@"code"];
             if ([str isEqualToString:mutDic[@"code"]]) {
-                [_eidtData replaceObjectAtIndex:idx withObject:@{@"code":mutDic[@"code"],@"value":text}];
+                [_eidtData replaceObjectAtIndex:idx withObject:@{@"code":str,@"value":text}];
                  isSame = YES;
             }
             

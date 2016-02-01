@@ -27,6 +27,29 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+- (void)addNavTitleView
+{
+    UIView *navView = [[UIView alloc] initWithFrame:CGRectMake(70, 0, SCREEN_WIDTH-140, 44)];
+    //    navView.layer.borderWidth = 1;
+    //    navView.layer.borderColor = [UIColor redColor].CGColor;
+    
+    UILabel *labTitile = [[UILabel alloc] initWithFrame:CGRectMake(0, 2, WIDTH(navView), 23)];
+    labTitile.text = self.title;
+    labTitile.textColor = [UIColor whiteColor];
+    labTitile.textAlignment = NSTextAlignmentCenter;
+    labTitile.font = SYSTEMFONT(17);
+    [navView addSubview:labTitile];
+    
+    UILabel *labSubTitile = [[UILabel alloc] initWithFrame:CGRectMake(0, HEIGHTADDY(labTitile), WIDTH(navView), 17)];
+    labSubTitile.text = [NSString stringWithFormat:@"%@ 床 %@",_dict[@"CHUANG"],_dict[@"BRNAME"]];
+    labSubTitile.textColor = [UIColor whiteColor];
+    labSubTitile.textAlignment = NSTextAlignmentCenter;
+    labSubTitile.font = SYSTEMFONT(13);
+    [navView addSubview:labSubTitile];
+    
+    
+    self.navigationItem.titleView = navView;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     _segmentedBtn.selectedSegmentIndex = 0;
@@ -34,6 +57,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadViewData) name:@"updataHisToryData" object:nil];
     
+    [self addNavTitleView];
     
     UIButton *navRightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     navRightBtn.frame = CGRectMake(0, 0, 70, 30);
@@ -49,6 +73,8 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:navRightBtn];
 
     
+    
+    [_tableView registerNib:[UINib nibWithNibName:@"RecordHistoryViewCell" bundle:nil] forCellReuseIdentifier:@"recordHistoryViewCell"];
     
     _dataSource = [[NSMutableArray alloc] init];
     
@@ -188,20 +214,47 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *patientsCell = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:patientsCell];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:patientsCell];
-    }
-
+    static NSString *patientsCell = @"recordHistoryViewCell";
+    UITableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:patientsCell forIndexPath:indexPath];
+    
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    NSString *strCode = _dataSource[indexPath.row][@"RECORD_DATE"];
-   
-    cell.textLabel.text = strCode;
+    
+    [self loadDataTableViewCell:cell cellForRowIndexPath:indexPath];
+    
     
     return cell;
 }
+- (void)loadDataTableViewCell:(UITableViewCell *)cell cellForRowIndexPath:(NSIndexPath *)indexPath
+{
+    UILabel *timeLab = (UILabel *)[cell.contentView viewWithTag:10];
+    timeLab.text = _dataSource[indexPath.row][@"RECORD_DATE"];
+    
 
+    NSString *tiwen = _dataSource[indexPath.row][@"TIWEN"];
+    UILabel *heatLab = (UILabel *)[cell.contentView viewWithTag:11];
+    
+    if ([tiwen isEqual:@"24h"]) {
+        cell.backgroundColor = [UIColor colorAppBg];
+         heatLab.text = @"体温：";
+    }else{
+        cell.backgroundColor = [UIColor whiteColor];
+        heatLab.text = [NSString stringWithFormat:@"体温：%@",tiwen];
+    }
+  
+    
+    UILabel *throbLab = (UILabel *)[cell.contentView viewWithTag:12];
+    throbLab.text = [NSString stringWithFormat:@"脉搏：%@",_dataSource[indexPath.row][@"MAIBO"]];
+    
+    UILabel *breatheLab = (UILabel *)[cell.contentView viewWithTag:13];
+    breatheLab.text = [NSString stringWithFormat:@"呼吸：%@",_dataSource[indexPath.row][@"HUXI"]];
+    
+    UILabel *nurseLab = (UILabel *)[cell.contentView viewWithTag:14];
+    nurseLab.text = [NSString stringWithFormat:@"病情护理及措施：%@",_dataSource[indexPath.row][@"BINGQING"]];
+ 
+    
+    
+
+}
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -237,6 +290,13 @@
         
     }];
     
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *message = [NSString stringWithFormat:@"病情护理及措施：%@",_dataSource[indexPath.row][@"BINGQING"]];
+    
+    CGRect rect = [message boundingRectWithSize:CGSizeMake(SCREEN_WIDTH-16, 500) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:SYSTEMFONT(15)} context:nil];
+    return rect.size.height < 20 ? 80 : rect.size.height + 64;
 }
 /*
 #pragma mark - Navigation

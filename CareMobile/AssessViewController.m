@@ -26,6 +26,29 @@
 
 @implementation AssessViewController
 
+- (void)addNavTitleView
+{
+    UIView *navView = [[UIView alloc] initWithFrame:CGRectMake(70, 0, SCREEN_WIDTH-140, 44)];
+//    navView.layer.borderWidth = 1;
+//    navView.layer.borderColor = [UIColor redColor].CGColor;
+    
+    UILabel *labTitile = [[UILabel alloc] initWithFrame:CGRectMake(0, 2, WIDTH(navView), 23)];
+    labTitile.text = self.title;
+    labTitile.textColor = [UIColor whiteColor];
+    labTitile.textAlignment = NSTextAlignmentCenter;
+    labTitile.font = SYSTEMFONT(17);
+    [navView addSubview:labTitile];
+    
+    UILabel *labSubTitile = [[UILabel alloc] initWithFrame:CGRectMake(0, HEIGHTADDY(labTitile), WIDTH(navView), 17)];
+    labSubTitile.text = [NSString stringWithFormat:@"%@ 床 %@",_dict[@"CHUANG"],_dict[@"BRNAME"]];
+    labSubTitile.textColor = [UIColor whiteColor];
+    labSubTitile.textAlignment = NSTextAlignmentCenter;
+    labSubTitile.font = SYSTEMFONT(13);
+    [navView addSubview:labSubTitile];
+    
+    
+    self.navigationItem.titleView = navView;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = _navTitle;
@@ -43,6 +66,9 @@
     if ([_navTitle isEqualToString:@"病程录"]) {
         [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"assessViewCell"];
     }else{
+        if ([_navTitle isEqualToString:@"护理记录单"]) {
+            [self addNavTitleView];
+        }
         UINib *cellNib = [UINib nibWithNibName:@"AssessViewCell" bundle:nil];
         [_tableView registerNib:cellNib forCellReuseIdentifier:@"assessViewCell"];
     }

@@ -77,6 +77,7 @@
 		BE8042451C41128C004A9B93 /* EndAssessViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE8042431C41128C004A9B93 /* EndAssessViewController.xib */; };
 		BE8042491C4148AD004A9B93 /* WardHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE8042471C4148AD004A9B93 /* WardHistoryViewController.m */; };
 		BE80424A1C4148AD004A9B93 /* WardHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE8042481C4148AD004A9B93 /* WardHistoryViewController.xib */; };
+		BE8A59A11C5C9ECC000BF817 /* RecordHistoryViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE8A59A01C5C9ECC000BF817 /* RecordHistoryViewCell.xib */; };
 		BEAC4C5F1C3E870400921389 /* RecordEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEAC4C5D1C3E870400921389 /* RecordEditViewController.m */; };
 		BEAC4C601C3E870400921389 /* RecordEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEAC4C5E1C3E870400921389 /* RecordEditViewController.xib */; };
 		BEAC4C621C3E885900921389 /* RecordEditViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEAC4C611C3E885900921389 /* RecordEditViewCell.xib */; };
@@ -271,6 +272,7 @@
 		BE8042461C4148AD004A9B93 /* WardHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WardHistoryViewController.h; sourceTree = "<group>"; };
 		BE8042471C4148AD004A9B93 /* WardHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WardHistoryViewController.m; sourceTree = "<group>"; };
 		BE8042481C4148AD004A9B93 /* WardHistoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WardHistoryViewController.xib; sourceTree = "<group>"; };
+		BE8A59A01C5C9ECC000BF817 /* RecordHistoryViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordHistoryViewCell.xib; sourceTree = "<group>"; };
 		BEAC4C5C1C3E870400921389 /* RecordEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordEditViewController.h; sourceTree = "<group>"; };
 		BEAC4C5D1C3E870400921389 /* RecordEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordEditViewController.m; sourceTree = "<group>"; };
 		BEAC4C5E1C3E870400921389 /* RecordEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordEditViewController.xib; sourceTree = "<group>"; };
@@ -872,6 +874,7 @@
 				BEE6F49A1C1BF5930076D11C /* SubItemHuLiAddCell.xib */,
 				BEAC4C611C3E885900921389 /* RecordEditViewCell.xib */,
 				4A34481A1C45007700812D23 /* AssessSelectViewCell.xib */,
+				BE8A59A01C5C9ECC000BF817 /* RecordHistoryViewCell.xib */,
 				BEF5ED281C3E9EB6002A9C63 /* CareButton.h */,
 				BEF5ED291C3E9EB6002A9C63 /* CareButton.m */,
 				BEB3AEC51C4BD69400A93BA6 /* SimpleCollectionViewCell.h */,
@@ -1110,6 +1113,7 @@
 				BE5B55031BE897B0005C76E2 /* Assess2ViewController.xib in Resources */,
 				4A31B2011C4792380055AB71 /* ItemTypeViewCell3.xib in Resources */,
 				BE4B109A1BEA007D002B3B0B /* SubItemViewController.xib in Resources */,
+				BE8A59A11C5C9ECC000BF817 /* RecordHistoryViewCell.xib in Resources */,
 				F092E65F1BF8239C000FA3A4 /* CopyrightViewController.xib in Resources */,
 				BEBDF39E1BE1CE5E00D9ED40 /* LaunchScreen.storyboard in Resources */,
 				BEAC4C601C3E870400921389 /* RecordEditViewController.xib in Resources */,

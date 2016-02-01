@@ -448,7 +448,7 @@
                             </barButtonItem>
                             <barButtonItem style="plain" id="UMR-AO-sfL">
                                 <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="16s-MM-maf">
-                                    <rect key="frame" x="101" y="7" width="130" height="31"/>
+                                    <rect key="frame" x="103" y="7" width="128" height="31"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <segments>
                                         <segment title="全部病人"/>
