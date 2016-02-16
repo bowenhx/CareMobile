@@ -80,7 +80,7 @@
 #define CAPI_Login @"/login.do?api="
 
 //服务器apk版本检查
-#define CAPI_Version @"/version.do?api="
+#define CAPI_Version @"/update.do?api="    //@"/version.do?api="
 
 //获取版权信息（接口）
 #define CAPI_Verinfo @"/verinfo.do?api="

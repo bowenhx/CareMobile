@@ -11,10 +11,11 @@
 #import "SettingViewController.h"
 #import "CopyrightViewController.h"
 
-@interface SettingTableViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface SettingTableViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
 {
     NSArray *_arrTitle;
 }
+@property (nonatomic , copy) NSString *ipath;
 @end
 
 @implementation SettingTableViewController
@@ -80,10 +81,34 @@
             break;
         case 2:
         {
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [self.view showHUDTitleView:@"已是最新版本" image:nil];
+            [self.view showHUDActivityView:@"正在加载" shade:NO];
+            [[CARequest shareInstance] startWithRequestCompletion:CAPI_Version withParameter:nil completed:^(id content, NSError *err) {
+//                NSLog(@"content = %@",content);
+                [self.view removeHUDActivity];
+                if ([content isKindOfClass:[NSDictionary class]]) {
                 
-            });
+                    if (content[@"update"]) {
+                        NSString *appVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+                        
+                        if ([content[@"verCode"] integerValue] == [appVersion integerValue]) {
+                            [self.view showHUDTitleView:@"已是最新版本" image:nil];
+                            return ;
+                        }
+                        
+                        NSString *verson = [NSString stringWithFormat:@"发现有新版本%@，请升级",appVersion];
+                        self.ipath = content[@"ipapath"];
+                        
+                        [[[UIAlertView alloc] initWithTitle:nil message:verson delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+                    }
+                }else if ([content isKindOfClass:[NSArray class]]){
+                }
+                
+            }];
+            
+//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                [self.view showHUDTitleView:@"已是最新版本" image:nil];
+//                
+//            });
             
         }
             break;
@@ -98,6 +123,10 @@
         default:
             break;
     }
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.ipath]];
 }
 /*
 // Override to support conditional editing of the table view.
