@@ -56,9 +56,13 @@
     _pickerData = [[NSMutableArray alloc] initWithCapacity:0];
     [self setPickerViewBg];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestLoadData:) name:@"updataListData" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshPageData) name:@"updataListData" object:nil];
     
     [self requestLoadData:@""];
+}
+- (void)refreshPageData
+{//更新页面数据
+    [self requestLoadData:_timeBtn.titleLabel.text];
 }
 - (void)requestLoadData:(NSString *)time
 {
