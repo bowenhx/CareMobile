@@ -27,13 +27,13 @@ static AppDelegate *_appDelegate;
     if (USERID == nil || [@"" isStringBlank:USERID]) {
         //启动后首先进入登陆界面
         [self beginShowLoginView];
-        self.window.backgroundColor = [UIColor whiteColor];
     }else{
         //使用Storyboard初始化根界面
         UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         self.window.rootViewController = [storyBoard instantiateInitialViewController];
     }
-    
+   
+    self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
     return YES;

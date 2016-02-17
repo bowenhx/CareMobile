@@ -662,7 +662,12 @@
     [self didHiddenDatePickerView];
     _tempTextField = textField;
     CGPoint point = [textField convertPoint:CGPointZero toView:_tableView];
+    if (point.y > 240) {
+        point.y = 230;
+    }
+    
     point.y += 10;
+   
     [UIView animateWithDuration:0.3 animations:^{
         CGRect rect = self.view.frame;
         rect.origin.y = -point.y;
@@ -734,7 +739,7 @@
     }
     
     [_tableView reloadData];
-    
+
    
 }
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
@@ -818,8 +823,9 @@
 {
     if ([_tempTextField isFirstResponder]) {
         [_tempTextField resignFirstResponder];
+        [self animateForViewSize];
     }
-    [self animateForViewSize];
+   
 }
 - (void)animateForViewSize
 {
