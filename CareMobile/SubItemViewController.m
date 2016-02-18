@@ -737,8 +737,8 @@
         }
         
     }
-    
-    [_tableView reloadData];
+
+   
 
    
 }
