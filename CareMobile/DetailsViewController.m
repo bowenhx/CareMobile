@@ -111,7 +111,7 @@
 {
     if (_dict.count) {
         [self.view showHUDActivityView:@"正在加载" shade:NO];
-        [[CARequest shareInstance] startWithRequestCompletion:CAPI_BingRen withParameter:@{@"bid":_dict[@"BRID"],@"vid":_dict[@"ZYID"],@"t":_state} completed:^(id content, NSError *err) {
+        [[CARequest shareInstance] startWithRequestCompletion:CAPI_BingRen withParameter:@{@"bid":_dict[@"BRID"],@"vid":_dict[@"ZYID"],@"t":_state,@"out":_outKey} completed:^(id content, NSError *err) {
             NSLog(@"content = %@",content);
             [self.view removeHUDActivity];
             if ([content isKindOfClass:[NSDictionary class]]) {

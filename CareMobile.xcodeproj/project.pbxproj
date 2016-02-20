@@ -78,6 +78,7 @@
 		BE8042491C4148AD004A9B93 /* WardHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE8042471C4148AD004A9B93 /* WardHistoryViewController.m */; };
 		BE80424A1C4148AD004A9B93 /* WardHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE8042481C4148AD004A9B93 /* WardHistoryViewController.xib */; };
 		BE8A59A11C5C9ECC000BF817 /* RecordHistoryViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE8A59A01C5C9ECC000BF817 /* RecordHistoryViewCell.xib */; };
+		BE97C2DF1C7856BB0016FB34 /* MendPatiendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE97C2DE1C7856BB0016FB34 /* MendPatiendViewController.m */; };
 		BEAC4C5F1C3E870400921389 /* RecordEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEAC4C5D1C3E870400921389 /* RecordEditViewController.m */; };
 		BEAC4C601C3E870400921389 /* RecordEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEAC4C5E1C3E870400921389 /* RecordEditViewController.xib */; };
 		BEAC4C621C3E885900921389 /* RecordEditViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEAC4C611C3E885900921389 /* RecordEditViewCell.xib */; };
@@ -273,6 +274,8 @@
 		BE8042471C4148AD004A9B93 /* WardHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WardHistoryViewController.m; sourceTree = "<group>"; };
 		BE8042481C4148AD004A9B93 /* WardHistoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WardHistoryViewController.xib; sourceTree = "<group>"; };
 		BE8A59A01C5C9ECC000BF817 /* RecordHistoryViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordHistoryViewCell.xib; sourceTree = "<group>"; };
+		BE97C2DD1C7856BB0016FB34 /* MendPatiendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MendPatiendViewController.h; sourceTree = "<group>"; };
+		BE97C2DE1C7856BB0016FB34 /* MendPatiendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MendPatiendViewController.m; sourceTree = "<group>"; };
 		BEAC4C5C1C3E870400921389 /* RecordEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordEditViewController.h; sourceTree = "<group>"; };
 		BEAC4C5D1C3E870400921389 /* RecordEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordEditViewController.m; sourceTree = "<group>"; };
 		BEAC4C5E1C3E870400921389 /* RecordEditViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordEditViewController.xib; sourceTree = "<group>"; };
@@ -560,6 +563,15 @@
 			path = zbar;
 			sourceTree = "<group>";
 		};
+		BE97C2DC1C7856670016FB34 /* MendVC */ = {
+			isa = PBXGroup;
+			children = (
+				BE97C2DD1C7856BB0016FB34 /* MendPatiendViewController.h */,
+				BE97C2DE1C7856BB0016FB34 /* MendPatiendViewController.m */,
+			);
+			name = MendVC;
+			sourceTree = "<group>";
+		};
 		BEBDF3821BE1CE5E00D9ED40 = {
 			isa = PBXGroup;
 			children = (
@@ -606,6 +618,7 @@
 				4A43D6601C4E2E9D006A0E6F /* RetrievalViewController.h */,
 				4A43D6611C4E2E9D006A0E6F /* RetrievalViewController.m */,
 				4A43D6621C4E2E9D006A0E6F /* RetrievalViewController.xib */,
+				BE97C2DC1C7856670016FB34 /* MendVC */,
 				F0A32C4D1BF735E0007C2045 /* ScanVC */,
 				F0F39C511BF6E36600C7C3AB /* Setting */,
 				F082FD871BE62A350068FBEF /* ItemsVC */,
@@ -1179,6 +1192,7 @@
 				4A77A9C01C4CCD6500EE7DC8 /* MJRefreshAutoGifFooter.h in Sources */,
 				4A77A9C11C4CCD6500EE7DC8 /* MJRefreshAutoGifFooter.m in Sources */,
 				4A77A9C21C4CCD6500EE7DC8 /* MJRefreshAutoNormalFooter.h in Sources */,
+				BE97C2DF1C7856BB0016FB34 /* MendPatiendViewController.m in Sources */,
 				4A77A9C31C4CCD6500EE7DC8 /* MJRefreshAutoNormalFooter.m in Sources */,
 				4A77A9C41C4CCD6500EE7DC8 /* MJRefreshAutoStateFooter.h in Sources */,
 				4A77A9C51C4CCD6500EE7DC8 /* MJRefreshAutoStateFooter.m in Sources */,

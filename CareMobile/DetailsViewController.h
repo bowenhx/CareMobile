@@ -10,6 +10,7 @@
 #import "BaseViewController.h"
 @interface DetailsViewController : BaseViewController
 
+@property (nonatomic , copy) NSString *outKey;
 @property (nonatomic , copy) NSDictionary *dict;
 
 @end

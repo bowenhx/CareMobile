@@ -15,6 +15,7 @@
     
     IBOutlet UIView *_pickerViewBg;
     
+    __weak IBOutlet UIDatePicker *_pickerDateView;
     __weak IBOutlet UIPickerView *_pickerView;
     
     IBOutlet UIView *_datePicViewBg;
@@ -94,6 +95,8 @@
         label.backgroundColor = [UIColor colorAppBg];
     }
   
+    [_pickerDateView setDatePickerMode:UIDatePickerModeDateAndTime];
+    [_pickerDateView setDate:[NSDate date]];
     
     /**
      *  设置_datePckerVIew 的frame适应屏幕尺寸
@@ -108,7 +111,7 @@
         label.backgroundColor = [UIColor colorAppBg];
     }
     
-    [_datePicView setDatePickerMode:UIDatePickerModeTime];
+    [_datePicView setDatePickerMode:UIDatePickerModeDateAndTime];
     
 
 }
@@ -420,10 +423,15 @@
                    }
                }];
                 
+                NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                [formatter setDateFormat:@"yyyy-MM-dd"];
+                
                 if (index == 0) {
-                    _dictTime[_tempType] = _pickerData[_pickerData.count-1];
+                    NSString *strDate = [NSString stringWithFormat:@"%@ %@",[formatter stringFromDate:_pickerDateView.date],_pickerData[_pickerData.count-1]];
+                    _dictTime[_tempType] = strDate;
                 }else{
-                    _dictTime[_tempType] = _pickerData[index-1];
+                     NSString *strDate = [NSString stringWithFormat:@"%@ %@",[formatter stringFromDate:_pickerDateView.date],_pickerData[index-1]];
+                    _dictTime[_tempType] = strDate;
                 }
                 
             }
@@ -509,6 +517,7 @@
         textF.borderStyle = UITextBorderStyleNone;
         textF.enabled = NO;
         labItem.text = @"时间";
+
         textF.text   = _dictTime[_tempType];
     }else{
         cell.accessoryType = UITableViewCellAccessoryNone;
@@ -589,7 +598,10 @@
                 //显示时间选择器
                 [self showDatePickerView];
             }else{
+                [self changePcickerViewOfPickdateFrame:YES];
+                
                 //显示时间类型选择数据（已有）
+
                 [_pickerData setArray:_tempPickData];
                 [self showPickerView];
                 [_pickerView selectedRowInComponent:0];
@@ -608,7 +620,9 @@
         if ([_navRight isEqualToString:@"添加"]) {
             _indexRow -= 1;
         }
-
+        
+        [self changePcickerViewOfPickdateFrame:NO];
+        
         NSString *strValue = _dataSource[_indexRow][@"DICT"];
         if (![@"" isStringBlank:strValue]) {
             NSArray *arrData = [strValue componentsSeparatedByString:@"$"];
@@ -870,7 +884,16 @@
 #pragma mark 选择完成并保存
 - (IBAction)didSelectFinishAction:(UIButton *)sender {
     if (_indexRow == 500) {
-         _dictTime[_tempType] = _pickerData[_pickerRow];
+        //选择日期
+        if (_pickerDateView.hidden) {
+            _dictTime[_tempType] = _pickerData[_pickerRow];
+        }else{
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            [formatter setDateFormat:@"yyyy-MM-dd"];
+            NSString *strDate = [NSString stringWithFormat:@"%@ %@",[formatter stringFromDate:_pickerDateView.date],_pickerData[_pickerRow]];
+            _dictTime[_tempType] = strDate;
+        }
+        
     }else{
         [self editAddItemsDataText:_pickerData[_pickerRow] forIndex:_indexRow];
     }
@@ -878,7 +901,26 @@
     [self didHiddenPickerView];
     [_tableView reloadData];
 }
+- (void)changePcickerViewOfPickdateFrame:(BOOL)isAll
+{
+    if (isAll) {
+        _pickerDateView.hidden = NO;
+        CGRect rectPickerViewFrame = _pickerView.frame;
+        rectPickerViewFrame.origin.x = 190;
+        rectPickerViewFrame.size.width = 130;
+        _pickerView.frame = rectPickerViewFrame;
+        _pickerView.backgroundColor = [UIColor whiteColor];
+    }else{
+        _pickerDateView.hidden = YES;
+        CGRect rectPickerViewFrame = _pickerView.frame;
+        rectPickerViewFrame.origin.x = (SCREEN_WIDTH - 130)/2;
+        rectPickerViewFrame.size.width = SCREEN_WIDTH;
+        _pickerView.frame = rectPickerViewFrame;
+        _pickerView.backgroundColor = [UIColor clearColor];
+    }
+    
 
+}
 - (void)showPickerView
 {
     [self animateForViewSize];

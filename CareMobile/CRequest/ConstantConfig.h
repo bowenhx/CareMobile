@@ -108,6 +108,10 @@
 
 
 
+//补录
+#define CAPI_BingOutList  @"/bingrenlist_out.do?api="
+
+
 
 //病人列表
 #define CAPI_BingRenList @"/bingrenlist.do?api="

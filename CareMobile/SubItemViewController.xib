@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SubItemViewController">
             <connections>
                 <outlet property="_datePicView" destination="a0N-u7-V2Q" id="PP6-gm-eAt"/>
                 <outlet property="_datePicViewBg" destination="ruF-0D-PBv" id="5mm-9K-tgs"/>
-                <outlet property="_pickerView" destination="7jU-KW-vpa" id="wDA-I0-Je6"/>
+                <outlet property="_pickerDateView" destination="xRs-Zv-EHP" id="dXy-F7-UiY"/>
+                <outlet property="_pickerView" destination="vg1-yN-ve7" id="sTx-yY-1ke"/>
                 <outlet property="_pickerViewBg" destination="bHP-gF-dLF" id="l2a-dI-TpZ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -25,15 +26,14 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="207"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
             <subviews>
-                <view tag="10" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nce-2G-aaa">
+                <view tag="10" contentMode="scaleToFill" id="Nce-2G-aaa">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YqU-6i-1ee">
+                        <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="YqU-6i-1ee">
                             <rect key="frame" x="0.0" y="0.0" width="58" height="45"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.32549019610000002" green="0.76078431369999999" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="58" id="GXo-lo-rFy"/>
-                            </constraints>
                             <state key="normal" title="取消">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -41,21 +41,20 @@
                                 <action selector="didSelectCancelAction:" destination="-1" eventType="touchUpInside" id="lU0-zk-9Dm"/>
                             </connections>
                         </button>
-                        <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gAx-IU-eha">
+                        <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="gAx-IU-eha">
                             <rect key="frame" x="262" y="0.0" width="58" height="45"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.32549019610000002" green="0.76078431369999999" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="58" id="rDL-mg-30I"/>
-                            </constraints>
-                            <state key="normal" title="確定">
+                            <state key="normal" title="确定">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
                                 <action selector="didSelectFinishAction:" destination="-1" eventType="touchUpInside" id="BqE-Fm-XJg"/>
                             </connections>
                         </button>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="13" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lDZ-IG-lpm">
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="13" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lDZ-IG-lpm">
                             <rect key="frame" x="59" y="0.0" width="202" height="45"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.32549019610000002" green="0.76078431369999999" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -63,41 +62,29 @@
                         </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="centerY" secondItem="lDZ-IG-lpm" secondAttribute="centerY" id="0xf-Hc-eZl"/>
-                        <constraint firstAttribute="bottom" secondItem="YqU-6i-1ee" secondAttribute="bottom" id="ORd-eS-Gzm"/>
-                        <constraint firstItem="lDZ-IG-lpm" firstAttribute="trailing" secondItem="gAx-IU-eha" secondAttribute="trailing" constant="-59" id="S6O-3V-Z9f"/>
-                        <constraint firstItem="YqU-6i-1ee" firstAttribute="top" secondItem="Nce-2G-aaa" secondAttribute="top" id="VlH-YD-WvM"/>
-                        <constraint firstItem="gAx-IU-eha" firstAttribute="top" secondItem="Nce-2G-aaa" secondAttribute="top" id="ZbQ-CE-Sa7"/>
-                        <constraint firstAttribute="trailing" secondItem="gAx-IU-eha" secondAttribute="trailing" id="c6e-wJ-hQS"/>
-                        <constraint firstAttribute="bottom" secondItem="gAx-IU-eha" secondAttribute="bottom" id="ews-cB-hmg"/>
-                        <constraint firstItem="lDZ-IG-lpm" firstAttribute="leading" secondItem="YqU-6i-1ee" secondAttribute="leading" constant="59" id="opv-qU-RX5"/>
-                        <constraint firstItem="YqU-6i-1ee" firstAttribute="leading" secondItem="Nce-2G-aaa" secondAttribute="leading" id="rQv-f5-J5F"/>
-                        <constraint firstItem="lDZ-IG-lpm" firstAttribute="top" secondItem="Nce-2G-aaa" secondAttribute="top" id="wRe-eQ-sDB"/>
-                    </constraints>
                 </view>
-                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7jU-KW-vpa">
+                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" id="xRs-Zv-EHP">
                     <rect key="frame" x="0.0" y="45" width="320" height="162"/>
-                    <accessibility key="accessibilityConfiguration">
-                        <accessibilityTraits key="traits" image="YES"/>
-                    </accessibility>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <date key="date" timeIntervalSinceReferenceDate="468838713.62754399">
+                        <!--2015-11-10 08:58:33 +0000-->
+                    </date>
+                    <date key="maximumDate" timeIntervalSinceReferenceDate="1167562800">
+                        <!--2037-12-31 11:00:00 +0000-->
+                    </date>
+                </datePicker>
+                <pickerView contentMode="scaleAspectFit" id="vg1-yN-ve7">
+                    <rect key="frame" x="190" y="45" width="320" height="162"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
-                        <outlet property="dataSource" destination="-1" id="pRr-NY-E1e"/>
-                        <outlet property="delegate" destination="-1" id="ObD-aN-qdk"/>
+                        <outlet property="dataSource" destination="-1" id="5fi-QJ-WXV"/>
+                        <outlet property="delegate" destination="-1" id="1Dv-BS-b2j"/>
                     </connections>
                 </pickerView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstItem="Nce-2G-aaa" firstAttribute="top" secondItem="bHP-gF-dLF" secondAttribute="top" id="0Nu-IT-HhE"/>
-                <constraint firstItem="7jU-KW-vpa" firstAttribute="leading" secondItem="bHP-gF-dLF" secondAttribute="leading" id="1dJ-rI-0Nq"/>
-                <constraint firstAttribute="bottom" secondItem="7jU-KW-vpa" secondAttribute="bottom" id="8Gg-zw-YTB"/>
-                <constraint firstAttribute="trailing" secondItem="7jU-KW-vpa" secondAttribute="trailing" id="I3z-NP-gNe"/>
-                <constraint firstItem="Nce-2G-aaa" firstAttribute="leading" secondItem="bHP-gF-dLF" secondAttribute="leading" id="LYI-GU-o6h"/>
-                <constraint firstAttribute="trailing" secondItem="Nce-2G-aaa" secondAttribute="trailing" id="feE-oH-7pC"/>
-                <constraint firstItem="Nce-2G-aaa" firstAttribute="top" secondItem="7jU-KW-vpa" secondAttribute="top" constant="-45" id="l4h-xp-ZDk"/>
-                <constraint firstAttribute="centerY" secondItem="Nce-2G-aaa" secondAttribute="centerY" constant="81" id="zlT-ID-bOy"/>
-            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="-98" y="291.5"/>
@@ -106,15 +93,14 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="207"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
             <subviews>
-                <view tag="20" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LW7-XH-oyi">
+                <view tag="20" contentMode="scaleToFill" id="LW7-XH-oyi">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ArC-4A-Ntk">
+                        <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ArC-4A-Ntk">
                             <rect key="frame" x="0.0" y="0.0" width="58" height="45"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.32549019610000002" green="0.76078431369999999" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="58" id="ZBF-6m-Cic"/>
-                            </constraints>
                             <state key="normal" title="取消">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -122,21 +108,20 @@
                                 <action selector="didSelectCancelDateAction:" destination="-1" eventType="touchUpInside" id="IQ4-Iu-Joa"/>
                             </connections>
                         </button>
-                        <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w90-iR-SvC">
+                        <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="w90-iR-SvC">
                             <rect key="frame" x="262" y="0.0" width="58" height="45"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.32549019610000002" green="0.76078431369999999" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="58" id="dKT-lc-4LG"/>
-                            </constraints>
-                            <state key="normal" title="確定">
+                            <state key="normal" title="确定">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
                                 <action selector="didSelectFinishDateAction:" destination="-1" eventType="touchUpInside" id="E4n-Jn-aJn"/>
                             </connections>
                         </button>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="13" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Oe-5Z-w6K">
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="13" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5Oe-5Z-w6K">
                             <rect key="frame" x="59" y="0.0" width="202" height="45"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.32549019610000002" green="0.76078431369999999" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -144,21 +129,10 @@
                         </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstItem="ArC-4A-Ntk" firstAttribute="leading" secondItem="LW7-XH-oyi" secondAttribute="leading" id="3wI-IV-R9i"/>
-                        <constraint firstItem="5Oe-5Z-w6K" firstAttribute="trailing" secondItem="w90-iR-SvC" secondAttribute="trailing" constant="-59" id="70K-GU-yCa"/>
-                        <constraint firstItem="ArC-4A-Ntk" firstAttribute="top" secondItem="LW7-XH-oyi" secondAttribute="top" id="DWK-sE-4Af"/>
-                        <constraint firstAttribute="centerY" secondItem="5Oe-5Z-w6K" secondAttribute="centerY" id="GZh-dp-nqC"/>
-                        <constraint firstItem="5Oe-5Z-w6K" firstAttribute="top" secondItem="LW7-XH-oyi" secondAttribute="top" id="PfL-Rl-Awe"/>
-                        <constraint firstItem="5Oe-5Z-w6K" firstAttribute="leading" secondItem="ArC-4A-Ntk" secondAttribute="leading" constant="59" id="eh9-l7-d64"/>
-                        <constraint firstAttribute="bottom" secondItem="ArC-4A-Ntk" secondAttribute="bottom" id="mzC-db-JtE"/>
-                        <constraint firstItem="w90-iR-SvC" firstAttribute="top" secondItem="LW7-XH-oyi" secondAttribute="top" id="nEj-Vt-2h3"/>
-                        <constraint firstAttribute="trailing" secondItem="w90-iR-SvC" secondAttribute="trailing" id="qU3-df-nSC"/>
-                        <constraint firstAttribute="bottom" secondItem="w90-iR-SvC" secondAttribute="bottom" id="y8j-sU-ltq"/>
-                    </constraints>
                 </view>
-                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="a0N-u7-V2Q">
+                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" id="a0N-u7-V2Q">
                     <rect key="frame" x="0.0" y="45" width="320" height="162"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <date key="date" timeIntervalSinceReferenceDate="468838713.62754399">
                         <!--2015-11-10 08:58:33 +0000-->
                     </date>
@@ -168,15 +142,6 @@
                 </datePicker>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstItem="LW7-XH-oyi" firstAttribute="top" secondItem="ruF-0D-PBv" secondAttribute="top" id="6hx-XX-SuO"/>
-                <constraint firstItem="a0N-u7-V2Q" firstAttribute="leading" secondItem="LW7-XH-oyi" secondAttribute="leading" id="BVl-lS-Yyx"/>
-                <constraint firstAttribute="bottom" secondItem="a0N-u7-V2Q" secondAttribute="bottom" id="NTS-zn-a5Y"/>
-                <constraint firstItem="a0N-u7-V2Q" firstAttribute="top" secondItem="LW7-XH-oyi" secondAttribute="bottom" id="V8z-zT-LNb"/>
-                <constraint firstAttribute="centerY" secondItem="LW7-XH-oyi" secondAttribute="centerY" constant="81" id="YLk-fy-t8P"/>
-                <constraint firstAttribute="trailing" secondItem="LW7-XH-oyi" secondAttribute="trailing" id="c2b-2l-Nm5"/>
-                <constraint firstItem="LW7-XH-oyi" firstAttribute="leading" secondItem="ruF-0D-PBv" secondAttribute="leading" id="hXs-Wu-7Xb"/>
-            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="173" y="688.5"/>

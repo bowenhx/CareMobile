@@ -73,7 +73,7 @@
                             <constraints>
                                 <constraint firstAttribute="width" constant="58" id="cBi-sK-VTx"/>
                             </constraints>
-                            <state key="normal" title="確定">
+                            <state key="normal" title="确定">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>

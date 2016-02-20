@@ -77,6 +77,7 @@
     
     _segmentedContBtn.tintColor = [UIColor whiteColor];
     [_segmentedContBtn setWidth:58 forSegmentAtIndex:0];
+    [_segmentedContBtn setWidth:72 forSegmentAtIndex:1];
     _segmentedContBtn.selectedSegmentIndex = 0;
     
     _tableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(reloadDatas)];
@@ -103,13 +104,26 @@
                 //所有病人
                 [_dataSource setArray:content];
                 [_tableView reloadData];
-            }else{
+            }else if (_segmentedContBtn.selectedSegmentIndex ==1){
                 [_dataSource removeAllObjects];
                 
                 //已关注病人
                 [content enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                     
                     if ([obj[@"ATTENT"] integerValue] == 1) {
+                        [_dataSource addObject:obj];
+                    }
+                }];
+                
+                [_tableView reloadData];
+            }else if (_segmentedContBtn.selectedSegmentIndex == 2)
+            {
+                [_dataSource removeAllObjects];
+                
+                //最新病人
+                [content enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    
+                    if ([obj[@"NEWPAT"] integerValue] == 1) {
                         [_dataSource addObject:obj];
                     }
                 }];
@@ -314,6 +328,8 @@
     
     UIImageView *imgTemp = (UIImageView *)[headView viewWithTag:100];
     UIImageView *imgNew = (UIImageView *)[headView viewWithTag:101];
+    imgNew.hidden = ![_dataSource[indexPath.row][@"NEWPAT"] boolValue];
+    
     
     NSInteger tempflag = [_dataSource[indexPath.row][@"TEMPFLAG"] integerValue];
     
@@ -321,37 +337,29 @@
         case 0:
         {
             //新
-            imgNew.hidden = NO;
             imgTemp.hidden = YES;
         }
             break;
         case 1:
         {
-            //无
-            imgNew.hidden = YES;
+         
             imgTemp.hidden = YES;
         }
             break;
         case 2:
         {
-            //正常
-            imgNew.hidden = YES;
             imgTemp.hidden = NO;
             imgTemp.image = [UIImage imageNamed:@"blank"];
         }
             break;
         case 3:
         {
-            //新
-            imgNew.hidden = YES;
             imgTemp.hidden = NO;
             imgTemp.image = [UIImage imageNamed:@"half"];
         }
             break;
         case 4:
         {
-            //新
-            imgNew.hidden = YES;
             imgTemp.hidden = NO;
             imgTemp.image = [UIImage imageNamed:@"full"];
         }
@@ -409,6 +417,7 @@
 {
     DetailsViewController *detailsVC = [[DetailsViewController alloc] initWithNibName:@"DetailsViewController" bundle:nil];
     detailsVC.dict = dic;
+    detailsVC.outKey = @"no";
     detailsVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:detailsVC animated:YES];
 
