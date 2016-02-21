@@ -19,6 +19,12 @@
     
     __weak IBOutlet UIButton     *_dateBtn;
     
+    
+    __weak IBOutlet UIButton     *_searchBtn;
+    
+    UIView              *_datePickViewBg;
+    UIDatePicker        *_datePickerView;
+    
     NSMutableArray          *_dataSource;
 
 }
@@ -42,12 +48,36 @@
 }
 - (void)initView
 {
+    NSArray *typeViews = [[NSBundle mainBundle] loadNibNamed:@"SearchViewItem" owner:nil options:nil];
+    
+    _datePickViewBg = typeViews[8];
+    _datePickViewBg.backgroundColor = [UIColor colorViewBg];
+    CGRect rect = _datePickViewBg.frame;
+    rect.size.width = SCREEN_WIDTH;
+    _datePickViewBg.frame = rect;
+    
+    _datePickerView = [_datePickViewBg viewWithTag:15];
+    [_datePickerView setMaximumDate:[NSDate date]];
+    
+    UIButton *cancelBtn = [_datePickViewBg viewWithTag:11];
+    UIButton *confirmBtn = [_datePickViewBg viewWithTag:12];
+    
+    [cancelBtn addTarget:self action:@selector(didSelectCancelDateAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [confirmBtn addTarget:self action:@selector(didSelectFinishDateAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    _searchBtn.layer.cornerRadius = 5;
+//    _searchBtn.layer.borderWidth = 1;
+//    _searchBtn.layer.borderColor = [UIColor whiteColor].CGColor;
+    _searchBtn.layer.masksToBounds = YES;
+
+    
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd"];
     
     NSString *strDate = [formatter stringFromDate:[NSDate date]];
 
-    NSInteger num = [[strDate substringToIndex:2] integerValue]  -1;
+    NSInteger num = [[strDate substringWithRange:NSMakeRange(8, 2)] integerValue]  -1;
     
     NSString *str = [strDate substringWithRange:NSMakeRange(0, 7)];
     
@@ -81,10 +111,28 @@
     }];
 
 }
+
+- (IBAction)selectDateType:(UIButton *)sender
+{
+    [_mySearchBar resignFirstResponder];
+    [self showDatePickerView];
+}
+
+- (IBAction)beginSearchDataAction:(UIButton *)sender
+{
+    [self didHiddenDatePickerView];
+    NSString *searchTerm = _mySearchBar.text;
+    [self searchBeginAction:searchTerm];
+    
+    [_mySearchBar resignFirstResponder];
+}
+
+
+
 - (BOOL)searchBar:(UISearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
-    NSString *strKey = [searchBar.text stringByAppendingString:text];
-    [self searchBeginAction:strKey];
+//    NSString *strKey = [searchBar.text stringByAppendingString:text];
+//    [self searchBeginAction:strKey];
     return YES;
 }
 - (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
@@ -292,6 +340,56 @@
         }
         
         
+    }];
+    
+}
+
+
+#pragma mark 选择完成操作PickerDate
+- (void)didSelectCancelDateAction:(UIButton *)sender {
+    [self didHiddenDatePickerView];
+}
+#pragma mark 选择完成并保存
+- (void)didSelectFinishDateAction:(UIButton *)sender {
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *strDate = [formatter stringFromDate:_datePickerView.date];
+    
+    [_dateBtn setTitle:strDate forState:0];
+    
+    [self requestDatas];
+    [self didHiddenDatePickerView];
+    
+}
+
+
+- (void)showDatePickerView
+{
+    CGRect rect = _datePickViewBg.frame;
+    rect.origin.x = 0;
+    rect.origin.y = SCREEN_HEIGHT;
+    _datePickViewBg.frame = rect;
+    if (!_datePickViewBg.superview) {
+        [self.view addSubview:_datePickViewBg];
+    }
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        CGRect frame = _datePickViewBg.frame;
+        frame.origin.y = SCREEN_HEIGHT - _datePickViewBg.frame.size.height - 44;
+        _datePickViewBg.frame = frame;
+    }];
+    
+}
+- (void)didHiddenDatePickerView
+{
+    [UIView animateWithDuration:0.3 animations:^{
+        CGRect rect = _datePickViewBg.frame;
+        rect.origin.y = SCREEN_HEIGHT;
+        _datePickViewBg.frame = rect;
+        
+    } completion:^(BOOL finished) {
+        [_datePickViewBg removeFromSuperview];
     }];
     
 }

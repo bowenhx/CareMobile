@@ -38,6 +38,8 @@
     NSString            *_tempType;
     
     BOOL                _deleteText;  //临时变量观察值
+    
+    NSInteger            _tempSelectPicker;
 }
 
 @end
@@ -151,6 +153,7 @@
 {
     _indexRow = 0;
     _tempType = @"A";
+    _tempSelectPicker = 0;
     _dataSource = [NSMutableArray array];
     _eidtData = [NSMutableArray array];
     _pickerData = [NSMutableArray array];
@@ -904,6 +907,7 @@
 - (void)changePcickerViewOfPickdateFrame:(BOOL)isAll
 {
     if (isAll) {
+        _tempSelectPicker = 1;
         _pickerDateView.hidden = NO;
         CGRect rectPickerViewFrame = _pickerView.frame;
         rectPickerViewFrame.origin.x = 190;
@@ -913,10 +917,11 @@
     }else{
         _pickerDateView.hidden = YES;
         CGRect rectPickerViewFrame = _pickerView.frame;
-        rectPickerViewFrame.origin.x = (SCREEN_WIDTH - 130)/2;
+        rectPickerViewFrame.origin.x = _tempSelectPicker == 0 ? 0 : (SCREEN_WIDTH - 130)/2;
         rectPickerViewFrame.size.width = SCREEN_WIDTH;
         _pickerView.frame = rectPickerViewFrame;
         _pickerView.backgroundColor = [UIColor clearColor];
+//        _tempSelectPicker = 0;
     }
     
 
@@ -970,7 +975,7 @@
 - (IBAction)didSelectFinishDateAction:(UIButton *)sender {
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"HH:mm"];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm"];
     NSString *strDate = [formatter stringFromDate:_datePicView.date];
     _dictTime[_tempType] = strDate;
     

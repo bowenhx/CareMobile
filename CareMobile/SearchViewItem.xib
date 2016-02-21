@@ -377,6 +377,79 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="-258" y="725"/>
         </view>
+        <view contentMode="scaleToFill" id="uTJ-CT-bJ8">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="207"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view tag="20" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KcS-14-vQu">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
+                    <subviews>
+                        <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aDV-Us-nRe">
+                            <rect key="frame" x="0.0" y="0.0" width="58" height="45"/>
+                            <color key="backgroundColor" red="0.32549019610000002" green="0.76078431369999999" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="58" id="VVs-yS-P1x"/>
+                            </constraints>
+                            <state key="normal" title="取消">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                        <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fHJ-Eu-3HQ">
+                            <rect key="frame" x="262" y="0.0" width="58" height="45"/>
+                            <color key="backgroundColor" red="0.32549019610000002" green="0.76078431369999999" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="58" id="kn5-md-o6O"/>
+                            </constraints>
+                            <state key="normal" title="确定">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="13" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i33-an-9Qb">
+                            <rect key="frame" x="59" y="0.0" width="202" height="45"/>
+                            <color key="backgroundColor" red="0.32549019610000002" green="0.76078431369999999" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="fHJ-Eu-3HQ" firstAttribute="top" secondItem="KcS-14-vQu" secondAttribute="top" id="2jZ-ZV-rBb"/>
+                        <constraint firstItem="i33-an-9Qb" firstAttribute="leading" secondItem="aDV-Us-nRe" secondAttribute="leading" constant="59" id="5St-pu-69c"/>
+                        <constraint firstAttribute="bottom" secondItem="aDV-Us-nRe" secondAttribute="bottom" id="DZf-Va-MVN"/>
+                        <constraint firstAttribute="bottom" secondItem="fHJ-Eu-3HQ" secondAttribute="bottom" id="GLb-5H-TXz"/>
+                        <constraint firstAttribute="trailing" secondItem="fHJ-Eu-3HQ" secondAttribute="trailing" id="JeS-sp-b2F"/>
+                        <constraint firstItem="i33-an-9Qb" firstAttribute="top" secondItem="KcS-14-vQu" secondAttribute="top" id="Kb1-6j-h0E"/>
+                        <constraint firstItem="aDV-Us-nRe" firstAttribute="top" secondItem="KcS-14-vQu" secondAttribute="top" id="NgV-x8-LO7"/>
+                        <constraint firstItem="aDV-Us-nRe" firstAttribute="leading" secondItem="KcS-14-vQu" secondAttribute="leading" id="Vaj-Y7-0C7"/>
+                        <constraint firstAttribute="centerY" secondItem="i33-an-9Qb" secondAttribute="centerY" id="m2f-vd-ZrB"/>
+                        <constraint firstItem="i33-an-9Qb" firstAttribute="trailing" secondItem="fHJ-Eu-3HQ" secondAttribute="trailing" constant="-59" id="vYX-xF-S4h"/>
+                    </constraints>
+                </view>
+                <datePicker tag="15" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="bwn-JX-Kyq">
+                    <rect key="frame" x="0.0" y="45" width="320" height="162"/>
+                    <date key="date" timeIntervalSinceReferenceDate="468838713.62754399">
+                        <!--2015-11-10 08:58:33 +0000-->
+                    </date>
+                    <date key="maximumDate" timeIntervalSinceReferenceDate="1167562800">
+                        <!--2037-12-31 11:00:00 +0000-->
+                    </date>
+                </datePicker>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="KcS-14-vQu" secondAttribute="trailing" id="7tJ-qB-uAf"/>
+                <constraint firstAttribute="centerY" secondItem="KcS-14-vQu" secondAttribute="centerY" constant="81" id="9Ia-5l-lV3"/>
+                <constraint firstItem="bwn-JX-Kyq" firstAttribute="leading" secondItem="KcS-14-vQu" secondAttribute="leading" id="G5N-Kh-5DP"/>
+                <constraint firstItem="bwn-JX-Kyq" firstAttribute="top" secondItem="KcS-14-vQu" secondAttribute="bottom" id="I1z-PT-vTv"/>
+                <constraint firstItem="KcS-14-vQu" firstAttribute="leading" secondItem="uTJ-CT-bJ8" secondAttribute="leading" id="I84-V8-Q4C"/>
+                <constraint firstAttribute="bottom" secondItem="bwn-JX-Kyq" secondAttribute="bottom" id="hXn-OT-QZD"/>
+                <constraint firstItem="KcS-14-vQu" firstAttribute="top" secondItem="uTJ-CT-bJ8" secondAttribute="top" id="zb5-4G-KCd"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="218" y="890.5"/>
+        </view>
     </objects>
     <resources>
         <image name="checkbox_selected" width="22" height="22"/>

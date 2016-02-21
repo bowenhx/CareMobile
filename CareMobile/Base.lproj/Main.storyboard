@@ -89,7 +89,7 @@
                                 <rect key="frame" x="-4" y="64" width="328" height="44"/>
                                 <subviews>
                                     <searchBar contentMode="redraw" fixedFrame="YES" placeholder="病人搜索" translatesAutoresizingMaskIntoConstraints="NO" id="eNj-86-fRF">
-                                        <rect key="frame" x="147" y="0.0" width="173" height="44"/>
+                                        <rect key="frame" x="147" y="0.0" width="132" height="44"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
                                             <outlet property="delegate" destination="bTQ-Qz-csN" id="hTR-vU-wbz"/>
@@ -102,6 +102,18 @@
                                         <state key="normal" title="Button">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="selectDateType:" destination="bTQ-Qz-csN" eventType="touchUpInside" id="Ngm-z8-a39"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VaF-nX-Rfn">
+                                        <rect key="frame" x="274" y="7" width="46" height="30"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <state key="normal" title="搜索" backgroundImage="log_bt"/>
+                                        <connections>
+                                            <action selector="beginSearchDataAction:" destination="bTQ-Qz-csN" eventType="touchUpInside" id="EGC-Xh-lgt"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.72941176470588232" green="0.72549019607843135" blue="0.75294117647058822" alpha="0.76000000000000001" colorSpace="calibratedRGB"/>
@@ -365,6 +377,7 @@
                     <connections>
                         <outlet property="_dateBtn" destination="j8Q-so-s5t" id="6NT-uB-UEs"/>
                         <outlet property="_mySearchBar" destination="eNj-86-fRF" id="Xai-px-9B6"/>
+                        <outlet property="_searchBtn" destination="VaF-nX-Rfn" id="W5N-zu-XgW"/>
                         <outlet property="_tableView" destination="9b3-Zv-tFz" id="eXn-4m-NDe"/>
                     </connections>
                 </viewController>
@@ -825,7 +838,6 @@
         <!--设置-->
         <scene sceneID="Vjp-Ed-d06">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="weL-LE-CZg" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="miq-9m-Gq4" customClass="SettingTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="28" sectionFooterHeight="28" id="Hfu-j5-kIp">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -849,6 +861,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="设置" id="C9O-8H-Jx9"/>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="weL-LE-CZg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="548" y="1173"/>
         </scene>
@@ -880,6 +893,7 @@
         <image name="bingRnew" width="25" height="25"/>
         <image name="def_btn_Add_pressed" width="33" height="44"/>
         <image name="docter" width="31" height="31"/>
+        <image name="log_bt" width="202" height="30"/>
         <image name="maintab_exit_pressed" width="18" height="18"/>
         <image name="maintab_message_normal" width="18" height="18"/>
         <image name="maintab_message_pressed" width="18" height="18"/>
