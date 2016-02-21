@@ -89,7 +89,7 @@
 - (void)requestDatas
 {
     [self.view showHUDActivityView:@"正在加载" shade:NO];
-    [[CARequest shareInstance] startWithRequestCompletion:CAPI_BingOutList withParameter:@{@"uid":USERID,@"curpage":@"1",@"key":@"",@"dt":_dateBtn.titleLabel.text} completed:^(id content, NSError *err) {
+    [[CARequest shareInstance] startWithRequestCompletion:CAPI_BingOutList withParameter:@{@"uid":USERID,@"curpage":@"1",@"dt":_dateBtn.titleLabel.text} completed:^(id content, NSError *err) {
         [self.view removeHUDActivity];
         NSLog(@"content = %@",content);
         if ([content isKindOfClass:[NSDictionary class]]) {
@@ -154,7 +154,7 @@
     key = [key stringByReplacingOccurrencesOfString:@"+" withString:@"-"];
     
     [self.view showHUDActivityView:@"正在加载" shade:NO];
-    [[CARequest shareInstance] startWithRequestCompletion:CAPI_BingOutList withParameter:@{@"uid":USERID,@"curpage":@"1",@"key":key} completed:^(id content, NSError *err) {
+    [[CARequest shareInstance] startWithRequestCompletion:CAPI_BingOutList withParameter:@{@"uid":USERID,@"key":key,@"dt":_dateBtn.titleLabel.text} completed:^(id content, NSError *err) {
         [self.view removeHUDActivity];
         NSLog(@"content = %@",content);
         if ([content isKindOfClass:[NSDictionary class]]) {

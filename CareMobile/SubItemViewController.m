@@ -145,7 +145,7 @@
 {
     //设置其他选项的时间为默认当前时间
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"HH:mm"];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm"];
     NSString *strDate = [formatter stringFromDate:[NSDate date]];
     return strDate;
 }
@@ -433,8 +433,11 @@
                     NSString *strDate = [NSString stringWithFormat:@"%@ %@",[formatter stringFromDate:_pickerDateView.date],_pickerData[_pickerData.count-1]];
                     _dictTime[_tempType] = strDate;
                 }else{
-                     NSString *strDate = [NSString stringWithFormat:@"%@ %@",[formatter stringFromDate:_pickerDateView.date],_pickerData[index-1]];
-                    _dictTime[_tempType] = strDate;
+                    if (![_tempType isEqualToString:@"D"]) {
+                        NSString *strDate = [NSString stringWithFormat:@"%@ %@",[formatter stringFromDate:_pickerDateView.date],_pickerData[index-1]];
+                        _dictTime[_tempType] = strDate;
+                    }
+                    
                 }
                 
             }

@@ -326,6 +326,10 @@
     UILabel *headNum = (UILabel *)[headView viewWithTag:52];
     headNum.text = [_dataSource[indexPath.row][@"CHUANG"] objString];
     
+    UILabel *chuangLab = (UILabel *)[headView viewWithTag:53];
+    chuangLab.text = [_dataSource[indexPath.row][@"SSJL"] objString];
+    
+    
     UIImageView *imgTemp = (UIImageView *)[headView viewWithTag:100];
     UIImageView *imgNew = (UIImageView *)[headView viewWithTag:101];
     imgNew.hidden = ![_dataSource[indexPath.row][@"NEWPAT"] boolValue];
