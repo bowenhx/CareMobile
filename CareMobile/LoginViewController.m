@@ -123,7 +123,7 @@
             /**
              *  保存用户userid
              */
-            NSString *userid = data[@"uid"];
+            NSString *userid = [data[@"uid"] stringByReplacingOccurrencesOfString:@" " withString:@""];
             [[SavaData shareInstance] savadataStr:userid KeyString:USER_ID_KEY];
             
             UIButton *btnName = (UIButton *)[self.view viewWithTag:100];

@@ -144,12 +144,7 @@
 {
     [super viewWillAppear:animated];
 }
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:UpdataNotification object:nil];
-}
+
 - (void)loadHeadViewDatas
 {
     if (_dict.count) {
@@ -256,7 +251,12 @@
 }
 
 
-
+- (void)tapBackBtn
+{
+    [self.navigationController popViewControllerAnimated:YES];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:UpdataNotification object:nil];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

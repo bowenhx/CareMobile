@@ -81,7 +81,7 @@
     
     NSString *str = [strDate substringWithRange:NSMakeRange(0, 7)];
     
-    NSString *strEnd = [NSString stringWithFormat:@"%@-%d",str,num];
+    NSString *strEnd = [NSString stringWithFormat:@"%@-%ld",str,(long)num];
     
     [_dateBtn setTitle:strEnd forState:0];
 

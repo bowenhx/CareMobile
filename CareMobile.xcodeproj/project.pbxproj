@@ -19,6 +19,7 @@
 		4A4C0ECD1C4894D80099EC33 /* ItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4C0ECC1C4894D80099EC33 /* ItemViewController.m */; };
 		4A4C0ED31C48E4890099EC33 /* LGActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4C0ED01C48E4890099EC33 /* LGActionSheet.m */; };
 		4A4C0ED41C48E4890099EC33 /* LGActionSheetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4C0ED21C48E4890099EC33 /* LGActionSheetCell.m */; };
+		4A52598A1C7AE7350096863C /* ScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5259891C7AE7350096863C /* ScanViewController.m */; };
 		4A77A9B61C4CCD6500EE7DC8 /* MJRefreshAutoFooter.h in Sources */ = {isa = PBXBuildFile; fileRef = BEBDF3F41BE1F2CC00D9ED40 /* MJRefreshAutoFooter.h */; };
 		4A77A9B71C4CCD6500EE7DC8 /* MJRefreshAutoFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = BEBDF3F51BE1F2CC00D9ED40 /* MJRefreshAutoFooter.m */; };
 		4A77A9B81C4CCD6500EE7DC8 /* MJRefreshBackFooter.h in Sources */ = {isa = PBXBuildFile; fileRef = BEBDF3F61BE1F2CC00D9ED40 /* MJRefreshBackFooter.h */; };
@@ -178,7 +179,6 @@
 		F09EC5801BE5027500CBE1D6 /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F09EC57E1BE5027500CBE1D6 /* SettingViewController.xib */; };
 		F0A32C521BF74231007C2045 /* libzbar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F0A32C511BF74231007C2045 /* libzbar.a */; };
 		F0A32C541BF74480007C2045 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0A32C531BF74480007C2045 /* CoreImage.framework */; };
-		F0A32C581BF7622F007C2045 /* ScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A32C561BF7622F007C2045 /* ScanViewController.m */; };
 		F0A32C591BF7622F007C2045 /* ScanViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0A32C571BF7622F007C2045 /* ScanViewController.xib */; };
 		F0A9C23C1BEA386C00519009 /* SubItemViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0A9C23B1BEA386C00519009 /* SubItemViewCell.xib */; };
 		F0A9C23E1BEA4BF300519009 /* ItemTypeViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0A9C23D1BEA4BF300519009 /* ItemTypeViewCell.xib */; };
@@ -224,6 +224,8 @@
 		4A4C0ED01C48E4890099EC33 /* LGActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGActionSheet.m; sourceTree = "<group>"; };
 		4A4C0ED11C48E4890099EC33 /* LGActionSheetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGActionSheetCell.h; sourceTree = "<group>"; };
 		4A4C0ED21C48E4890099EC33 /* LGActionSheetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGActionSheetCell.m; sourceTree = "<group>"; };
+		4A5259881C7AE7350096863C /* ScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanViewController.h; sourceTree = "<group>"; };
+		4A5259891C7AE7350096863C /* ScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanViewController.m; sourceTree = "<group>"; };
 		B57D1EF51C0C9CAC00E59CB6 /* CourseDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseDetailViewController.h; sourceTree = "<group>"; };
 		B57D1EF61C0C9CAC00E59CB6 /* CourseDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseDetailViewController.m; sourceTree = "<group>"; };
 		B57D1EF71C0C9CAC00E59CB6 /* CourseDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CourseDetailViewController.xib; sourceTree = "<group>"; };
@@ -465,8 +467,6 @@
 		F09EC57E1BE5027500CBE1D6 /* SettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingViewController.xib; sourceTree = "<group>"; };
 		F0A32C511BF74231007C2045 /* libzbar.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libzbar.a; sourceTree = "<group>"; };
 		F0A32C531BF74480007C2045 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
-		F0A32C551BF7622F007C2045 /* ScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanViewController.h; sourceTree = "<group>"; };
-		F0A32C561BF7622F007C2045 /* ScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanViewController.m; sourceTree = "<group>"; };
 		F0A32C571BF7622F007C2045 /* ScanViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScanViewController.xib; sourceTree = "<group>"; };
 		F0A9C23B1BEA386C00519009 /* SubItemViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SubItemViewCell.xib; sourceTree = "<group>"; };
 		F0A9C23D1BEA4BF300519009 /* ItemTypeViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemTypeViewCell.xib; sourceTree = "<group>"; };
@@ -1011,8 +1011,8 @@
 		F0A32C4D1BF735E0007C2045 /* ScanVC */ = {
 			isa = PBXGroup;
 			children = (
-				F0A32C551BF7622F007C2045 /* ScanViewController.h */,
-				F0A32C561BF7622F007C2045 /* ScanViewController.m */,
+				4A5259881C7AE7350096863C /* ScanViewController.h */,
+				4A5259891C7AE7350096863C /* ScanViewController.m */,
 				F0A32C571BF7622F007C2045 /* ScanViewController.xib */,
 			);
 			name = ScanVC;
@@ -1197,6 +1197,7 @@
 				4A77A9C41C4CCD6500EE7DC8 /* MJRefreshAutoStateFooter.h in Sources */,
 				4A77A9C51C4CCD6500EE7DC8 /* MJRefreshAutoStateFooter.m in Sources */,
 				4A77A9C61C4CCD6500EE7DC8 /* MJRefreshBackGifFooter.h in Sources */,
+				4A52598A1C7AE7350096863C /* ScanViewController.m in Sources */,
 				4A77A9C71C4CCD6500EE7DC8 /* MJRefreshBackGifFooter.m in Sources */,
 				4A77A9C81C4CCD6500EE7DC8 /* MJRefreshBackNormalFooter.h in Sources */,
 				4A77A9C91C4CCD6500EE7DC8 /* MJRefreshBackNormalFooter.m in Sources */,
@@ -1233,7 +1234,6 @@
 				F0F39C501BF6D9AA00C7C3AB /* SettingTableViewController.m in Sources */,
 				BE7A0E891C4009A3009B5DB1 /* PresentsViewController.m in Sources */,
 				BEF5ED2A1C3E9EB6002A9C63 /* CareButton.m in Sources */,
-				F0A32C581BF7622F007C2045 /* ScanViewController.m in Sources */,
 				F09EC5551BE4D48600CBE1D6 /* MBProgressHUD.m in Sources */,
 				BE5B550A1BE8B55E005C76E2 /* BaseViewController.m in Sources */,
 				F09EC57B1BE4EDB400CBE1D6 /* SavaData.m in Sources */,
