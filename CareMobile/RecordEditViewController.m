@@ -253,6 +253,7 @@
                                @"id"   :@(_recID),
                                @"bid"   :_dict[@"BRID"],
                                @"vid"  : _dict[@"ZYID"],
+                               @"NURSE_SYS_NAME" : self.userName,
                                @"items":json};
     
     
