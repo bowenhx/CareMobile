@@ -588,7 +588,7 @@
         //执行失败
         if ([content[@"status"] integerValue] == 1) {
             //确定去执行医嘱执行单
-            [[[UIAlertView alloc] initWithTitle:nil message:content[@"msg"] delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil] show];
+            [[[UIAlertView alloc] initWithTitle:nil message:content[@"msg"] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil] show];
         }else {
             NSString *message = content[@"msg"];
             if (message.length > 2 ){
@@ -605,7 +605,10 @@
 #pragma mark UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    [self scanCodeRequestFlag:1];
+    if (buttonIndex) {
+        [self scanCodeRequestFlag:1];
+    }
+   
 }
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
