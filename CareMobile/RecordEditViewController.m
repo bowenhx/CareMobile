@@ -225,12 +225,16 @@
                 if (index == 15) {
                     index = 9999999;
                 }
+            }else if ([obj[@"code"] isEqualToString:@"NURSE_SYS_NAME"])
+            {
+                 [_eidtData addObject:@{@"code":obj[@"code"],@"value":self.userName}];
             }else if (![@"" isStringBlank:obj[@"preval"]])
             {
                 [_eidtData addObject:@{@"code":obj[@"code"],@"value":obj[@"preval"]}];
             }
             
         }];
+        
         
         
         [_tableView reloadData];
@@ -246,6 +250,7 @@
         [self.view showHUDTitleView:@"请编辑后再提交" image:nil];
         return;
     }
+    
     NSData *data = [NSJSONSerialization dataWithJSONObject:_eidtData options:NSJSONWritingPrettyPrinted error:nil];
     NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     
@@ -253,7 +258,6 @@
                                @"id"   :@(_recID),
                                @"bid"   :_dict[@"BRID"],
                                @"vid"  : _dict[@"ZYID"],
-                               @"NURSE_SYS_NAME" : self.userName,
                                @"items":json};
     
     
@@ -355,10 +359,11 @@
     {
         if ([_navString isEqualToString:@"新增"]) {
             textF.enabled = NO;
+            textF.text = self.userName;
         }else{
             textF.enabled = YES;
+            textF.text = _dataSource[indexPath.row][@"value"];
         }
-        textF.text = self.userName;
         
     }else{
         if ([_navString isEqualToString:@"新增"]) {
