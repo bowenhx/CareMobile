@@ -7,6 +7,7 @@
 //
 
 #import "EndAssessViewController.h"
+#import "AssDetailsViewController.h"
 
 @interface EndAssessViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
@@ -109,6 +110,19 @@
     cell.textLabel.text = strCode;
     
     return cell;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    AssDetailsViewController *assDetailsVC = [[AssDetailsViewController alloc] initWithNibName:@"AssDetailsViewController" bundle:nil];
+    assDetailsVC.dict = self.dict;
+    assDetailsVC.assessID = _dataSource[indexPath.section][@"id"];
+    assDetailsVC.time = _dataSource[indexPath.section][@"timeList"][indexPath.row][@"RECORD_TIME"];
+    
+    [self.navigationController pushViewController:assDetailsVC animated:YES];
+    
+    
 }
 - (CGFloat )tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {

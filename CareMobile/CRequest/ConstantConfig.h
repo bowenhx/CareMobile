@@ -195,7 +195,8 @@
 //评估保存
 #define CAPI_NursingSave  @"/nursing_eval_save.do?api="
 
-
+//评估单明细
+#define CAPI_NursingDetail  @"/nursing_eval_detail.do?api="
 
 
 

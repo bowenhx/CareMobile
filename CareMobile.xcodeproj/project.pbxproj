@@ -72,6 +72,8 @@
 		BE5B550A1BE8B55E005C76E2 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE5B55091BE8B55E005C76E2 /* BaseViewController.m */; };
 		BE7A0E891C4009A3009B5DB1 /* PresentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE7A0E871C4009A3009B5DB1 /* PresentsViewController.m */; };
 		BE7A0E8A1C4009A3009B5DB1 /* PresentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE7A0E881C4009A3009B5DB1 /* PresentsViewController.xib */; };
+		BE803BE21C94571300477422 /* AssDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE803BE01C94571300477422 /* AssDetailsViewController.m */; };
+		BE803BE31C94571300477422 /* AssDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE803BE11C94571300477422 /* AssDetailsViewController.xib */; };
 		BE80423F1C409A80004A9B93 /* WardListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE80423D1C409A80004A9B93 /* WardListViewController.m */; };
 		BE8042401C409A80004A9B93 /* WardListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE80423E1C409A80004A9B93 /* WardListViewController.xib */; };
 		BE8042441C41128C004A9B93 /* EndAssessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE8042421C41128C004A9B93 /* EndAssessViewController.m */; };
@@ -266,6 +268,9 @@
 		BE7A0E861C4009A3009B5DB1 /* PresentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresentsViewController.h; sourceTree = "<group>"; };
 		BE7A0E871C4009A3009B5DB1 /* PresentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresentsViewController.m; sourceTree = "<group>"; };
 		BE7A0E881C4009A3009B5DB1 /* PresentsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PresentsViewController.xib; sourceTree = "<group>"; };
+		BE803BDF1C94571300477422 /* AssDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssDetailsViewController.h; sourceTree = "<group>"; };
+		BE803BE01C94571300477422 /* AssDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssDetailsViewController.m; sourceTree = "<group>"; };
+		BE803BE11C94571300477422 /* AssDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AssDetailsViewController.xib; sourceTree = "<group>"; };
 		BE80423C1C409A80004A9B93 /* WardListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WardListViewController.h; sourceTree = "<group>"; };
 		BE80423D1C409A80004A9B93 /* WardListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WardListViewController.m; sourceTree = "<group>"; };
 		BE80423E1C409A80004A9B93 /* WardListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WardListViewController.xib; sourceTree = "<group>"; };
@@ -944,6 +949,9 @@
 				BE8042411C41128C004A9B93 /* EndAssessViewController.h */,
 				BE8042421C41128C004A9B93 /* EndAssessViewController.m */,
 				BE8042431C41128C004A9B93 /* EndAssessViewController.xib */,
+				BE803BDF1C94571300477422 /* AssDetailsViewController.h */,
+				BE803BE01C94571300477422 /* AssDetailsViewController.m */,
+				BE803BE11C94571300477422 /* AssDetailsViewController.xib */,
 			);
 			name = ItemsVC;
 			sourceTree = "<group>";
@@ -1120,6 +1128,7 @@
 				4A43D6641C4E2E9D006A0E6F /* RetrievalViewController.xib in Resources */,
 				BEAC4C621C3E885900921389 /* RecordEditViewCell.xib in Resources */,
 				BEAC4C671C3E8BE600921389 /* HistoryRecordViewController.xib in Resources */,
+				BE803BE31C94571300477422 /* AssDetailsViewController.xib in Resources */,
 				F082FD861BE6269A0068FBEF /* ItemViewController.xib in Resources */,
 				BEBDF4811BE21D2200D9ED40 /* Default@2x.jpg in Resources */,
 				4A4253DA1C3B707600386A4E /* AssessViewController.xib in Resources */,
@@ -1184,6 +1193,7 @@
 				4A77A9B81C4CCD6500EE7DC8 /* MJRefreshBackFooter.h in Sources */,
 				4A77A9B91C4CCD6500EE7DC8 /* MJRefreshBackFooter.m in Sources */,
 				4A77A9BA1C4CCD6500EE7DC8 /* MJRefreshComponent.h in Sources */,
+				BE803BE21C94571300477422 /* AssDetailsViewController.m in Sources */,
 				4A77A9BB1C4CCD6500EE7DC8 /* MJRefreshComponent.m in Sources */,
 				4A77A9BC1C4CCD6500EE7DC8 /* MJRefreshFooter.h in Sources */,
 				4A77A9BD1C4CCD6500EE7DC8 /* MJRefreshFooter.m in Sources */,
