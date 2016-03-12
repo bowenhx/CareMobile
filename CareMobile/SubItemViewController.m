@@ -415,7 +415,11 @@
                 [_tempPickData setArray:arrData];
                 [_pickerView reloadAllComponents];
                 
-                NSInteger todayValue = [[self todayTime] integerValue];
+                //设置其他选项的时间为默认当前时间
+                NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                [formatter setDateFormat:@"HH:mm"];
+                NSString *strDate = [formatter stringFromDate:[NSDate date]];
+                NSInteger todayValue = [strDate integerValue];
                 
                 __block NSInteger index = 0;
                 //在新增给生命体征时间时，给一个默认的选项值
@@ -426,7 +430,6 @@
                    }
                }];
                 
-                NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
                 [formatter setDateFormat:@"yyyy-MM-dd"];
                 
                 if (index == 0) {
@@ -439,7 +442,6 @@
                     }
                     
                 }
-                
             }
             
             NSArray *arrItem = content[@"ORDERITEM"];

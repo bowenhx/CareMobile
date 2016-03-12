@@ -44,7 +44,7 @@
     NSString            *_type1;
     NSString            *_type2;
     
-    NSInteger           _scanCode;//医嘱执行单中扫描过来的二维码
+    NSString           *_scanCode;//医嘱执行单中扫描过来的二维码
 }
 @end
 
@@ -562,7 +562,7 @@
         scanVC.didUpdataDicBlock = ^(NSDictionary *dictInfor){
             
             if (dictInfor.count) {
-                _scanCode = [dictInfor[@"code"] integerValue];
+                _scanCode = dictInfor[@"code"];
                 [self scanCodeRequestFlag:0];
                 
 //                self.dict = dictInfor;
@@ -583,17 +583,21 @@
 - (void)scanCodeRequestFlag:(NSInteger)index
 {
     //扫码校对
-    [[CARequest shareInstance] startWithRequestCompletion:CAPI_YZZXDDOOK withParameter:@{@"bid":_dict[@"BRID"],@"vid":_dict[@"ZYID"],@"uid":USERID,@"zt":@"C",@"code":@(_scanCode),@"flag":@(index)} completed:^(id content, NSError *err) {
+    [[CARequest shareInstance] startWithRequestCompletion:CAPI_YZZXDDOOK withParameter:@{@"bid":_dict[@"BRID"],@"vid":_dict[@"ZYID"],@"uid":USERID,@"zt":@"C",@"code":_scanCode,@"flag":@(index)} completed:^(id content, NSError *err) {
         NSLog(@"content = %@",content);
         //执行失败
-        if ([content[@"status"] integerValue] == 0) {
+        if ([content[@"status"] integerValue] == 1) {
+            //确定去执行医嘱执行单
+            [[[UIAlertView alloc] initWithTitle:nil message:content[@"msg"] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil] show];
+        }else {
             NSString *message = content[@"msg"];
             if (message.length > 2 ){
                 [self.view showHUDTitleView:message image:nil];
             }
-        }else{
-            //执行成功
-            [[[UIAlertView alloc] initWithTitle:nil message:content[@"msg"] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil] show];
+            if ([content[@"status"] integerValue] == 2) {
+                //执行单执行成功后去刷新列表
+                [self loadYiZhuTypeRequest:CAPI_YZZXD];
+            }
         }
         
     }];
@@ -602,8 +606,9 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex) {
-       [self scanCodeRequestFlag:1];
+        [self scanCodeRequestFlag:1];
     }
+   
 }
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{

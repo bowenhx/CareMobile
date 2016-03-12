@@ -14,11 +14,11 @@
 #import "WardHistoryViewController.h"
 #import "RetrievalViewController.h"
 
-@interface ScanViewController ()<ZBarReaderViewDelegate,UIAlertViewDelegate>
+@interface ScanViewController ()<ZBarReaderDelegate,ZBarReaderViewDelegate,UIAlertViewDelegate>
 {
     __weak IBOutlet UIView *_searchTypeView;
     
-    
+    ZBarReaderView *_readview;
     NSInteger       _wardRounds;
     
 }
@@ -53,22 +53,22 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:navRightBtn];
     
     
-    ZBarReaderView *readview = [ZBarReaderView new]; // 初始化
-    readview.frame = CGRectMake(0, 0, SCREEN_WIDTH, HEIGHT(self.view)); // 改变frame
-    readview.readerDelegate = self; // 设置delegate
-    readview.allowsPinchZoom = NO; // 不使用Pinch手势变焦
-    readview.torchMode = 0;
+    _readview = [ZBarReaderView new]; // 初始化
+    _readview.frame = CGRectMake(0, 0, SCREEN_WIDTH, HEIGHT(self.view)); // 改变frame
+    _readview.readerDelegate = self; // 设置delegate
+    _readview.allowsPinchZoom = NO; // 不使用Pinch手势变焦
+    _readview.torchMode = 0;
     
-    [self.view addSubview:readview];
+    [self.view addSubview:_readview];
     
-    [readview start]; // 开始扫描 [readview stop]; // 停止扫描
+    [_readview start]; // 开始扫描 [readview stop]; // 停止扫描
     
-    UIImageView *imageV = [[UIImageView alloc] initWithFrame:readview.frame];
+    UIImageView *imageV = [[UIImageView alloc] initWithFrame:_readview.frame];
     imageV.image = [UIImage imageNamed:@"icon_scan_codeBg"];
     imageV.alpha = .2f;
     [self.view addSubview:imageV];
     
-    ZBarImageScanner *scanner = readview.scanner;
+    ZBarImageScanner *scanner = _readview.scanner;
     [scanner setSymbology: ZBAR_I25
                    config: ZBAR_CFG_ENABLE
                        to: 0];
@@ -80,7 +80,7 @@
         
         _searchTypeView.backgroundColor = [UIColor colorAppBg];
         
-        [self.view sendSubviewToBack:readview];
+        [self.view sendSubviewToBack:_readview];
         
         for (UIButton *btn in _searchTypeView.subviews) {
             btn.layer.borderWidth = 1;

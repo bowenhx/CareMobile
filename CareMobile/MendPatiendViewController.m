@@ -76,14 +76,8 @@
     [formatter setDateFormat:@"yyyy-MM-dd"];
     
     NSString *strDate = [formatter stringFromDate:[NSDate date]];
-
-    NSInteger num = [[strDate substringWithRange:NSMakeRange(8, 2)] integerValue]  -1;
     
-    NSString *str = [strDate substringWithRange:NSMakeRange(0, 7)];
-    
-    NSString *strEnd = [NSString stringWithFormat:@"%@-%d",str,num];
-    
-    [_dateBtn setTitle:strEnd forState:0];
+    [_dateBtn setTitle:strDate forState:0];
 
 }
 - (void)requestDatas
