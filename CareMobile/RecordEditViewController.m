@@ -37,7 +37,8 @@
     
     BOOL             _deleteText;  //临时变量观察值
 }
-@property (nonatomic , copy)NSString *userName;
+@property (nonatomic , copy) NSString *userName;
+@property (nonatomic , copy) NSString *oldTime;
 @end
 
 @implementation RecordEditViewController
@@ -188,27 +189,23 @@
         
         [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             [_eidtData addObject:@{@"code":obj[@"code"],@"value":obj[@"value"]}];
-
+            
+            /* 
+             需求：
+             修改时，提交的记录单的时间（也就是RECORD_DATE所对应的值）略微调整一下
+             目的：实现记录单修改时间的功能
+             原来：原记录时间，如2016-01-16 22:54:00
+             现在：原记录时间 $ 修改后的时间，如2016-01-16 22:54:00$2016-01-17 23:00:00，
+             说明：$前为当前记录单之前的保存时间，$后面的为要把当前记录单的时间修改为新时间
+             */
+            
+            if ([obj[@"code"] isEqualToString:@"RECORD_DATE"]) {
+                _oldTime = obj[@"value"];
+                //在修改完成提交时候用到
+            }
+            
         }];
-//
-//      
-//        
-//        [_data enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop){
-//            
-//            NSMutableDictionary *mutDic = [NSMutableDictionary dictionaryWithDictionary:obj];
-//              
-//            [arr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//                   if ([mutDic[@"CODE"] isEqualToString:obj[@"code"]]) {
-//                    mutDic[@"CTRL"] = obj[@"CTRL"];
-//                    mutDic[@"ITEM"] = obj[@"ITEM"];
-//                }
-//                   
-//            }];
-//              
-//             [_dataSource addObject:mutDic];
-//         }];
-//        
-//        [_tableView reloadData];
+
     }else{
         [_dataSource setArray:arr];
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -249,6 +246,16 @@
     if (_eidtData.count == 0) {
         [self.view showHUDTitleView:@"请编辑后再提交" image:nil];
         return;
+    }
+    if ([_navString isEqualToString:@"修改"]) {
+        [_eidtData enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([obj[@"code"] isEqualToString:@"RECORD_DATE"]) {
+                NSString *strTime = [NSString stringWithFormat:@"%@$%@",_oldTime,obj[@"value"]];
+                [_eidtData replaceObjectAtIndex:idx withObject:@{@"code":obj[@"code"],@"value":strTime}];
+                *stop = true;
+            }
+        }];
+
     }
     
     NSData *data = [NSJSONSerialization dataWithJSONObject:_eidtData options:NSJSONWritingPrettyPrinted error:nil];
@@ -503,6 +510,15 @@
         _deleteText = YES;
     }else{
         _deleteText = NO;
+        
+        NSString *newStr = [textField.text stringByAppendingString:string];
+        NSRange range = [newStr rangeOfString:@"/"];
+        if (range.location != NSNotFound) {
+            NSString *endStr = [newStr componentsSeparatedByString:@"/"][1];
+            if (endStr.integerValue > 280) {
+                return NO;
+            }
+        }
     }
     return YES;
 }

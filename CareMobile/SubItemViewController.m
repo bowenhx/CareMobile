@@ -52,7 +52,7 @@
         
         _detailsView.lab1.text = _dict[@"BINGQU"];
         _detailsView.lab2.text = [NSString stringWithFormat:@"%@ 床",_dict[@"CHUANG"]];
-        _detailsView.lab3.text = [NSString stringWithFormat:@"病人ID %@",_dict[@"BRID"]];
+        _detailsView.lab3.text = [NSString stringWithFormat:@"病人ID %@",_dict[@"INPNO"]];
         _detailsView.lab4.text = [NSString stringWithFormat:@"住院次数 %@",_dict[@"ZYID"]];
         
         _detailsView.labContent1.text = _dict[@"BRNAME"];
@@ -766,10 +766,20 @@
 }
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
+    NSLog(@"textField.text %@,string = %@",textField.text,string);
+    
     if (string.length == 0) {
         _deleteText = YES;
     }else{
         _deleteText = NO;
+        NSString *newStr = [textField.text stringByAppendingString:string];
+        NSRange range = [newStr rangeOfString:@"/"];
+        if (range.location != NSNotFound) {
+            NSString *endStr = [newStr componentsSeparatedByString:@"/"][1];
+            if (endStr.integerValue > 280) {
+                return NO;
+            }
+        }
     }
     return YES;
 }
