@@ -216,7 +216,7 @@
     labDegree.text = _dataSource[indexPath.row][@"HULIDJ"];
     
     UILabel *labMake = (UILabel *)[cell.contentView viewWithTag:25];
-    labMake.text = [_dataSource[indexPath.row][@"BRID"] objString];
+    labMake.text = [_dataSource[indexPath.row][@"INPNO"] objString];
     
     UILabel *labNumber = (UILabel *)[cell.contentView viewWithTag:26];
     labNumber.text = [_dataSource[indexPath.row][@"ZYID"] objString];
