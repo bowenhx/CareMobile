@@ -152,7 +152,7 @@
         _detailsView.lab1.text = _dict[@"BINGQU"];
         _detailsView.lab2.text = [NSString stringWithFormat:@"%@ 床",_dict[@"CHUANG"]];
         _detailsView.lab3.text = [NSString stringWithFormat:@"病人ID %@",_dict[@"INPNO"]];
-        _detailsView.lab4.text = [NSString stringWithFormat:@"住院次数 %@",_dict[@"ZYID"]];
+        _detailsView.lab4.text = [NSString stringWithFormat:@"住院 %@",_dict[@"ZYDAYS"]];
         
         _detailsView.labContent1.text = _dict[@"BRNAME"];
         _detailsView.labContent2.text = _dict[@"SEX"];
