@@ -5,7 +5,9 @@
 //  Created by Guibin on 15/11/3.
 //  Copyright © 2015年 MobileCare. All rights reserved.
 //
-
+/*
+ *  评估项页面
+ */
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 @interface Assess2ViewController : BaseViewController

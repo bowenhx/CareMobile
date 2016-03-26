@@ -5,7 +5,9 @@
 //  Created by Guibin on 15/11/14.
 //  Copyright © 2015年 MobileCare. All rights reserved.
 //
-
+/*
+ *  扫码功能页面
+ */
 #import "BaseViewController.h"
 
 typedef enum {

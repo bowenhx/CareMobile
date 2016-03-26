@@ -5,7 +5,9 @@
 //  Created by Guibin on 15/11/4.
 //  Copyright © 2015年 MobileCare. All rights reserved.
 //
-
+/*
+ *  生命体征的修改与添加  页面
+ */
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 @interface SubItemViewController : BaseViewController
