@@ -511,14 +511,14 @@
     }else{
         _deleteText = NO;
         
-        NSString *newStr = [textField.text stringByAppendingString:string];
-        NSRange range = [newStr rangeOfString:@"/"];
-        if (range.location != NSNotFound) {
-            NSString *endStr = [newStr componentsSeparatedByString:@"/"][1];
-            if (endStr.integerValue > 280) {
-                return NO;
-            }
-        }
+//        NSString *newStr = [textField.text stringByAppendingString:string];
+//        NSRange range = [newStr rangeOfString:@"/"];
+//        if (range.location != NSNotFound) {
+//            NSString *endStr = [newStr componentsSeparatedByString:@"/"][1];
+//            if (endStr.integerValue > 280) {
+//                return NO;
+//            }
+//        }
     }
     return YES;
 }
@@ -538,7 +538,7 @@
         //不追加/
     }else{
         //追加/
-        sender.text = [NSString stringWithFormat:@"%d/",value];
+        sender.text = [NSString stringWithFormat:@"%ld/",(long)value];
     }
     
     
