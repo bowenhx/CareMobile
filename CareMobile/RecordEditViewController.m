@@ -458,18 +458,12 @@
 {
     if (_indexRow != 0xffff) {
          NSMutableDictionary *mutDic = [NSMutableDictionary dictionaryWithDictionary:_dataSource[index]];
-        if ([_dataSource[index][@"ctrl"] isEqualToString:@"MULTI"])
+        NSRange range = [mutDic[@"dict"] rangeOfString:text];
+        if ([mutDic[@"ctrl"] isEqualToString:@"MULTI"] && range.location != NSNotFound)
         {
             NSString *value = mutDic[@"value"];
             if (!([@"" isStringBlank:value] || [@"" isStringBlank:text])) {
-//                NSRange range = [value rangeOfString:text];
-//                if (range.location) {
-//                    
-//                }else{
-            
-                    text = [NSString stringWithFormat:@"%@,%@",value, text];
-//                }
-                
+                text = [NSString stringWithFormat:@"%@,%@",value, text];
             }
            
         }
